@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset=" UTF-8">
+      
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="referrer" content="no-referrer" />
+        <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+        {% load static %}
+        <!-- <meta name="description" content="">
+          <meta name="author" content=""> -->
+      
+        <!-- 地址栏中网页前端logo -->
+        <link rel="icon" href="../static/imgs/icon.png">
+      
+        <title>胡萝卜</title>
+      
+        <!-- Bootstrap core CSS -->
+        <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+      
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <link href="../static/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+      
+        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <script src="../static/js/ie-emulation-modes-warning.js"></script>
+      
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+            <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+          <![endif]-->
+
+        <!-- Custom styles for this template -->
+        <link href="../static/css/carousel.css" rel="stylesheet">
+        <link rel="stylesheet" href="../static/css/nav.css">
+        <link rel="stylesheet" href="../static/css/poster.css">
+        <link rel="stylesheet" href="../static/css/btn.css">
+        <link rel="stylesheet" href="../static/css/card.css">
+        <link rel="stylesheet" href="../static/css/footer.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/htmleaf-demo.css">
+        <script src="{% static 'plugins/editor.md/jquery.cookie.js' %}"></script>
+        <script src="{% static 'plugins/editor.md/jquery.min.js' %}"></script>
+        
+
+        <style>
+          html,body {background-color:whitesmoke;}
+          .container{
+            background: whitesmoke;
+            text-align: center;
+            width: 100%
+          }
+          .container img{
+            width: 20%;
+            height: 100%;
+          }
+          #carousel {
+	          width:100%;
+	          /* border:1px solid #222; */
+            height: 500px;
+            clear:both;
+            overflow:hidden;
+            background:whitesmoke;
+	      }
+          #carousel img {
+            visibility:hidden; /* hide images until carousel can handle them */
+            cursor:pointer; /* otherwise it's not as obvious items can be clicked */
+            width: 17%;
+            height: auto;
+          }
+          #callback-output{
+            width: 100%;
+            min-height: 25%;
+            background: whitesmoke;
+            height:auto;
+            overflow-y:scroll;
+          }
+          hr.style1 {
+            border: 0;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+          }
+          /* 评论区标题和作者 */
+          #comment-author-style{
+            text-decoration: none;
+            color:black;
+            background-color: whitesmoke;
+            
+          }
+          #comment-author-style:hover,#comment-author-style:active{
+                color:whitesmoke;
+                background-color:rgba(0, 0, 0, 0.5); 
+          }
+          #comment-title-style{
+            line-height: 16px;
+            padding:3px;
+            border-radius:3px;
+            text-decoration: none;
+            color:black;
+            background-color: whitesmoke;
+          }
+          #comment-title-style:hover,#comment-title-style:active{
+            padding:3px;
+            border-radius:3px;
+                color:whitesmoke;
+                background-color:black; 
+          }
+          #comment-box-style{
+            padding:10px;
+
+          }
+
+        </style>
+        <script>
+            $(document).ready(function () {
+              // $("#butt").click(function () {
+              $.ajax({
+                async: true,
+                url: "/showArticle/" + "电影",
+                type: 'get',
+                // headers: { 'X-CSRFToken': $.cookie('csrftoken') },
+                success: function (data) {
+                  $('#md_show').append(data);
+                }
+              });
+              // });
+        
+            });
+          </script>
+      </head>
+
+<!-- NAVBAR
+================================================== -->
+<body style="overflow-x: hidden">
+    <div class="navbar-wrapper">
+        <div class="container">
+          {% include 'navbar.html' %}
+        </div>
+    </div>
+         
+<!-- Slides
+================================================== -->  
+<div class="sim-slider" data-width="1750" data-height="830" data-top="150" data-animation="500" data-current="true" >
+	<div class="sim-slider-inner">
+		<div class="sim-slider-slide">
+      <div class="sim-slider-layer" data-effect="fadeInLeft" data-width="442.5" data-height="660" data-left="100" data-top="120"><img class="poster" src="../static/imgs/movies/poster1.jpg" /></div> 
+      <div class="sim-slider-layer" data-effect="fadeInUp" data-width="442.5" data-height="660" data-left="650" data-top="120"><img class="poster" src="../static/imgs/movies/poster3.jpg" /></div>
+			<div class="sim-slider-layer" data-effect="fadeInRight" data-width="442.5" data-height="660" data-left="1200" data-top="120"><img class="poster" src="../static/imgs/movies/poster2.jpg" /></div> 
+    </div>
+    <div class="sim-slider-slide">
+        <div class="sim-slider-layer" data-effect="fadeInLeft" data-width="442.5" data-height="660" data-left="100" data-top="120"><img class="poster" src="../static/imgs/movies/poster4.jpg" /></div> 
+        <div class="sim-slider-layer" data-effect="fadeInUp" data-width="442.5" data-height="660" data-left="650" data-top="120"><img class="poster" src="../static/imgs/movies/poster5.jpg" /></div>
+        <div class="sim-slider-layer" data-effect="fadeInRight" data-width="442.5" data-height="660" data-left="1200" data-top="120"><img class="poster" src="../static/imgs/movies/poster6.jpg" /></div> 
+    </div>
+    <div class="sim-slider-slide">
+        <div class="sim-slider-layer" data-effect="fadeInLeft" data-width="442.5" data-height="660" data-left="100" data-top="120"><img class="poster" src="../static/imgs/movies/poster7.jpg" /></div> 
+        <div class="sim-slider-layer" data-effect="fadeInUp" data-width="442.5" data-height="660" data-left="650" data-top="120"><img class="poster" src="../static/imgs/movies/poster8.jpg" /></div>
+        <div class="sim-slider-layer" data-effect="fadeInRight" data-width="442.5" data-height="660" data-left="1200" data-top="120"><img class="poster" src="../static/imgs/movies/poster9.jpg" /></div> 
+    </div>
+  </div>
+</div>
+
+
+<!-- area2  通过三个按钮控制显示出不同内容
+================================================== -->  
+<div style="text-align: center">
+    <div class="btn-group" style="width:100%;position: relative;">
+        <button style="width:10%" onclick="ch('recent')" >近期热映</button>
+        <button style="width:10%" onclick="ch('pop')" >即将上映</button>
+        <button style="width:10%" onclick="ch('top')" >最受欢迎</button>
+    </div>
+  <div>
+      <div id="container1" class="container" style="position: relative;margin: 2% 19%;">
+			    <div id="carousel">
+			      <a href="/moviepages_spider-man/"><img src="../static/imgs/movies/poster1.jpg" id="item-1" /></a>
+			      <a href="http://127.0.0.1:8000"><img src="../static/imgs/movies/poster2.jpg" id="item-2" /></a>
+			      <a href="http://127.0.0.1:8000"><img src="../static/imgs/movies/poster3.jpg" id="item-3" /></a>
+            <a href="http://127.0.0.1:8000"><img src="../static/imgs/movies/poster4.jpg" id="item-4" /></a>
+            <a href="http://127.0.0.1:8000"><img src="../static/imgs/movies/poster5.jpg" id="item-5" /></a>
+            <a href="http://127.0.0.1:8000"><img src="../static/imgs/movies/poster6.jpg" id="item-6" /></a>
+            <a href="http://127.0.0.1:8000"><img src="../static/imgs/movies/poster7.jpg" id="item-7" /></a>
+            <a href="http://127.0.0.1:8000"><img src="../static/imgs/movies/Dark Phoenix.jpg" id="item-8" /></a>
+            <a href="http://127.0.0.1:8000"><img src="../static/imgs/movies/poster9.jpg" id="item-9" /></a>
+			    </div>
+    </div>
+    <div id="container2" class="container" style="margin: 2% 0 0 20%; position:relative;display: none" >
+      <div>
+          <div class="pic" style="margin:1.5% 1.5%;position: relative">
+              <img src="../static/imgs/movies/The Secret Life of Pets 2.jpg" class="image">
+              <div class="overlay">
+                  <div class="text"><h4>爱宠大机密2</h4><br><p>导演: 克里斯·雷纳德</p><p>主演:  帕顿·奥斯瓦尔特 / 凯文·哈特   </p>
+                    <p>上映日期: 2019-07-05(中国大陆)</p><p>类型: 喜剧 / 动画 / 冒险</p><p>片长: 103分钟</p></div>
+              </div>
+          </div>
+          <div class="pic" style="margin:1.5% 1.5%;position: absolute;left: 20%;">
+              <img src="../static/imgs/movies/Drug Lords.jpg"class="image" >
+              <div class="overlay">
+                <div class="text"><h4>扫毒2天地对决</h4><br><p>导演: 邱礼涛</p><p>主演: 刘德华 / 古天乐 / 苗侨伟 </p>
+                  <p>上映日期: 2019-07-05(中国大陆)</p><p>类型: 剧情 / 动作 / 悬疑 / 犯罪</p><p>片长: 99分钟</p></div>
+              </div>
+          </div>
+          <div class="pic" style="margin:1.5% 1.5%;position: absolute;left: 40%;">
+              <img src="../static/imgs/movies/jiulong.jpg" class="image">
+              <div class="overlay">
+                  <div class="text"><h4>九龙不败</h4><br><p>导演: 陈果</p><p>主演: 张晋 / 安德森·席尔瓦</p>
+                    <p>上映日期: 2019-07-02(中国大陆)</p><p>类型: 剧情 / 动作 / 犯罪</p><p>片长: 100分钟</p></div>
+              </div>
+          </div>
+          <div class="pic" style="margin:1.5% 1.5%;position: absolute;left: 60%;">
+              <img src="../static/imgs/movies/Better Angels.jpg" class="image">
+              <div class="overlay">
+                  <div class="text"><h4>善良的天使</h4><br><p>导演: 柯文思</p><p>主演: 柯文思 / 亨利·基辛格</p>
+                    <p>上映日期: 2019-07-02(中国大陆)</p><p>类型: 纪录片</p><p>片长: 88分钟(中国大陆)</p></div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div id="container3" class="container" style="margin: 2% 0 0 20%;position:relative; display: none" >
+      <div>
+          <div class="pic" style="margin:1.5% 1.5%;position: relative;">
+              <img src="../static/imgs/movies/Yesterday Once More.jpg" class="image">
+              <div class="overlay">
+                  <div class="text"><h4>别岁</h4><br><p>导演: 张琪东</p><p>主演: 袁忠远 / 龚格尔 / 杨乔木</p>
+                    <p>上映日期: 2019-07-02(中国大陆)</p><p>类型: 剧情</p><p>片长: 90分钟</p></div>
+              </div>
+          </div>
+          <div class="pic" style="margin:1.5% 1.5%;position: absolute;left: 20%;">
+              <img src="../static/imgs/movies/poster8.jpg"class="image" >
+              <div class="overlay">
+                  <div class="text"><h4>狮子王</h4><br><p>导演: 乔恩·费儒</p><p>主演: 唐纳德·格洛弗 / 阿尔法·伍达德</p>
+                    <p>上映日期: 2019-07-12(中国大陆)</p><p>类型: 动画 / 歌舞 / 冒险</p><p>片长: 118分钟</p></div>
+              </div>
+          </div>
+          <div class="pic" style="margin:1.5% 1.5%;position: absolute;left: 40%;">
+              <img src="../static/imgs/movies/If Thoughts Can Kill.jpg" class="image">
+              <div class="overlay">
+                  <div class="text"><h4>他她他她</h4><br><p>导演: 刘一</p><p>主演: 范文芳 / 李铭顺 / 戚玉武</p>
+                    <p>上映日期: 2019-07-05(中国大陆)</p><p>类型: 剧情 / 悬疑</p><p>片长: 88分钟</p></div>
+              </div>
+          </div>
+          <div class="pic" style="margin:1.5% 1.5%;position: absolute;left: 60%;">
+              <img src="../static/imgs/movies/SHANKAR‘s.jpg" class="image">
+              <div class="overlay">
+                  <div class="text"><h4>宝莱坞机器人2.0：重生归来</h4><br><p>导演: S·尚卡尔</p><p>主演: 拉吉尼坎塔 / 阿克谢·库玛尔</p>
+                    <p>上映日期: 2019-07-12(中国大陆)</p><p>类型: 喜剧 / 动作 / 科幻</p><p>片长: 107分钟</p></div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+      
+    <div id="container4" class="container" style="margin: 2% 0 0 20%;display: none;position: relative">
+        <div style="width: 50%;position: relative">
+          <div class="card" style="margin: 5% 3%;overflow-x:hidden;overflow-y:auto;word-break:break-all;">
+            <div class="toprating">
+              <div style=" 	position: absolute; left: 0;top: 0;bottom: 0;">
+                <ul>
+                  <li>
+                      <h4>No.1</h4>
+                      <p>肖申克的救赎  / The Shawshank Redemption  / 月黑高飞(港) / 刺激1995(台)</p>
+                      <div style="width: 25%;padding-bottom: 32.5%;height:0;float: left;background-image: url(https://img3.doubanio.com/view/photo/s_ratio_poster/public/p480747492.jpg);background-size:100%;">
+                      </div>
+                      <div style="width: 75%;padding-bottom: 19.5%;position: relative;left: 1.5%;">
+                          <p class="intr">导演: 弗兰克·德拉邦特 Frank Darabont 主演: 蒂姆·罗宾斯 Tim Robbins /...<br>
+                            1993 / 中国大陆 香港 / 剧情 爱情 同性<br> 9.6 1084830人评价<br></p><p> "希望让人自由"</p>
+                      </div>
+                  </li>
+                  <li>
+                      <h4>No.2</h4>
+                      <p>霸王别姬  / 再见，我的妾 / Farewell My Concubine</p>
+                      <div style="width: 25%;padding-bottom: 32.5%;height:0;float: left;background-image: url(https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1910813120.jpg);background-size:100%;">
+                      </div>
+                      <div style="width: 75%;padding-bottom: 20%;position: relative;left: 1.5%;">
+                          <p class="intr">导演: 陈凯歌 Kaige Chen   主演: 张国荣 Leslie Cheung / 张丰毅 Fengyi Zha...  <br>
+                                1994 / 美国 / 犯罪 剧情 <br> 9.6 1464520人评价<br> </p><p>"风华绝代"</p>
+                      </div>
+                  </li>
+                  <li>
+                      <h4>No.3</h4>
+                      <p>
+                          这个杀手不太冷  / Léon  / 杀手莱昂 / 终极追杀令(台) </p>
+                      <div style="width: 25%;padding-bottom: 32.5%;height:0;float: left;background-image: url(https://img3.doubanio.com/view/photo/s_ratio_poster/public/p511118051.jpg);background-size:100%;">
+                      </div>
+                      <div style="width: 75%;padding-bottom: 20%;position: relative;left: 1.5%;">
+                          <p class="intr">导演: 吕克·贝松 Luc Besson   主演: 让·雷诺 Jean Reno / 娜塔莉·波特曼 ... <br>
+                            1994 / 法国 / 剧情 动作 犯罪 <br> 9.4 1332778人评价<br> </p><p>"怪蜀黍和小萝莉不得不说的故事。"</p>
+                      </div>
+                  </li>
+                  <li>
+                      <h4>No.4</h4>
+                      <p>阿甘正传  / Forrest Gump  / 福雷斯特·冈普</p>
+                      <div style="width: 25%;padding-bottom: 32.5%;height:0;float: left;background-image: url(https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2559011361.jpg);background-size:100%;">
+                      </div>
+                      <div style="width: 75%;padding-bottom: 20%;position: relative;left: 1.5%;">
+                          <p class="intr">导演: 罗伯特·泽米吉斯 Robert Zemeckis   主演: 汤姆·汉克斯 Tom Hanks / ...<br>
+                            1994 / 美国 / 剧情 爱情 <br> 9.4 1151125人评价<br> </p><p>"一部美国近现代史。"</p>
+                      </div>
+                  </li>
+                  <li>
+                      <h4>No.5</h4>
+                      <p>美丽人生  / La vita è bella  / 一个快乐的传说(港) / Life Is Beautiful </p>
+                      <div style="width: 25%;padding-bottom: 32.5%;height:0;float: left;background-image: url(https://img3.doubanio.com/view/photo/s_ratio_poster/public/p510861873.jpg);background-size:100%;">
+                      </div>
+                      <div style="width: 75%;padding-bottom: 20%;position: relative;left: 1.5%;">
+                          <p class="intr">导演: 罗伯托·贝尼尼 Roberto Benigni   主演: 罗伯托·贝尼尼 Roberto Beni... <br>
+                            1997 / 意大利 / 剧情 喜剧 爱情 战争 <br> 9.5 675040人评价<br> </p><p>"最美的谎言。"</p>
+                      </div>
+                  </li>
+                  <li>
+                      <h4>No.6</h4>
+                      <p>泰坦尼克号  / Titanic  / 铁达尼号(港 / 台)</p>
+                      <div style="width: 25%;padding-bottom: 32.5%;height:0;float: left;background-image: url(https://img3.doubanio.com/view/photo/s_ratio_poster/public/p457760035.jpg);background-size:100%;">
+                      </div>
+                      <div style="width: 75%;padding-bottom: 20%;position: relative;left: 1.5%;">
+                          <p class="intr">导演: 詹姆斯·卡梅隆 James Cameron   主演: 莱昂纳多·迪卡普里奥 Leonardo... <br>
+                            1997 / 美国 / 剧情 爱情 灾难 <br> 9.4 1092129人评价<br> </p><p>"失去的才是永恒的。"</p>
+                      </div>
+                  </li>
+                  <li>
+                      <h4>No.7</h4>
+                      <p>千与千寻  / 千と千尋の神隠し  / 神隐少女(台) / 千与千寻的神隐</p>
+                      <div style="width: 25%;padding-bottom: 32.5%;height:0;float: left;background-image: url(https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2557573348.jpg);background-size:100%;">
+                      </div>
+                      <div style="width: 75%;padding-bottom: 20%;position: relative;left: 1.5%;">
+                          <p class="intr">导演: 宫崎骏 Hayao Miyazaki   主演: 柊瑠美 Rumi Hîragi / 入野自由 Miy... <br>
+                            2001 / 日本 / 剧情 动画 奇幻<br>  9.3 1128567人评价<br> </p><p>"最好的宫崎骏，最好的久石让。"</p>
+                      </div>
+                  </li>
+                  <li>
+                      <h4>No.8</h4>
+                      <p>辛德勒的名单  / Schindler's List  / 舒特拉的名单(港) / 辛德勒名单</p>
+                      <div style="width: 25%;padding-bottom: 32.5%;height:0;float: left;background-image: url(https://img3.doubanio.com/view/photo/s_ratio_poster/public/p492406163.jpg);background-size:100%;">
+                      </div>
+                      <div style="width: 75%;padding-bottom: 20%;position: relative;left: 1.5%;">
+                          <p class="intr">导演: 史蒂文·斯皮尔伯格 Steven Spielberg   主演: 连姆·尼森 Liam Neeson... <br>
+                            1993 / 美国 / 剧情 历史 战争<br>  9.5 600859人评价<br> </p><p>拯救一个人，就是拯救整个世界。"</p>
+                      </div>
+                  </li>
+                  <li>
+                      <h4>No.9</h4>
+                      <p>盗梦空间  / Inception  / 潜行凶间(港) / 全面启动(台) </p>
+                      <div style="width: 25%;padding-bottom: 32.5%;height:0;float: left;background-image: url(https://img3.doubanio.com/view/photo/s_ratio_poster/public/p513344864.jpg);background-size:100%;">
+                      </div>
+                      <div style="width: 75%;padding-bottom: 20%;position: relative;left: 1.5%;">
+                          <p class="intr">导演: 克里斯托弗·诺兰 Christopher Nolan   主演: 莱昂纳多·迪卡普里奥 Le... <br>
+                            2010 / 美国 英国 / 剧情 科幻 悬疑 冒险<br>  9.3 1149452人评价<br> </p><p>"诺兰给了我们一场无法盗取的梦。"</p>
+                      </div>
+                  </li>
+                  <li>
+                      <h4>No.10</h4>
+                      <p>忠犬八公的故事  / Hachi: A Dog's Tale  / 忠犬小八(台) / 秋田犬八千(港) </p>
+                      <div style="width: 25%;padding-bottom: 32.5%;height:0;float: left;background-image: url(https://img3.doubanio.com/view/photo/s_ratio_poster/public/p524964016.jpg);background-size:100%;">
+                      </div>
+                      <div style="width: 75%;padding-bottom: 20%;position: relative;left: 1.5%;">
+                          <p class="intr">导演: 莱塞·霍尔斯道姆 Lasse Hallström   主演: 理查·基尔 Richard Ger... <br>
+                            2009 / 美国 英国 / 剧情<br>  9.3 763439人评价<br> </p><p>"永远都不能忘记你所爱的人。"</p>
+                      </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="container">
+              <h4 style="width: 100%"></h4> 
+            </div>
+          </div>
+        </div>
+        <div style="width: 40%;position:absolute;top:0%; left: 50%">
+          <div>
+            <div class="pictop" style="margin:20% 22%">
+                <img src="https://img3.doubanio.com/view/photo/l/public/p2178902400.jpg" class="imagetop">
+                <div class="overlay">
+                  <div class="text" style="font-size: 18px;"></div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+<!--评论-->
+
+<div style="width:860px;border-width: 30px;position: relative;" id="comment" class="container" >
+    <div class="card" style="padding:30px;margin: 5% 3%;overflow-x:hidden;width:700px;word-break:break-all;position: relative;">
+      <div id="md_show" class="comment">
+      <h3>评论区</h3>
+      
+
+    </div>
+  </div>
+</div>
+
+<!--页尾begin-->
+<hr class="style1" style="height: 1px;">
+<div class="h_footer" style="position:relative">
+  <div class="footer_info"style="position:relative">
+    <div class="footer_infowrap">
+      <div class="b_logo">
+        <img src="../static/imgs/icon.png" width="105" height="105" alt="胡萝卜" title="胡萝卜">
+      </div>
+      <div class="h_wx fl">
+        <ul class="h_wxwrap">
+          <li class="h_wb">
+            <img src="../static/imgs/icon.png" width="65" height="65" alt="微博" title="微博">
+          </li>
+          <li>
+            <img src="../static/imgs/icon.png" width="65" height="65" alt="微信" title="微信">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="f_wz">
+    <a href="#">关于我们</a>
+    <a href="#">加入我们</a>
+    <a href="#">法律条款</a>
+    <a href="#">隐私政策</a>
+    <p>Carrot</p>
+  </div>
+</div>
+
+<!--页尾end-->
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="../static/js/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+  <script src="../static/js/bootstrap.min.js"></script>
+  <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+  <script src="../static/js/holder.min.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="../static/js/jquery-ui-1.10.4.min.js"></script>
+  <script src="../static/js/responsive-layered-slider.js"></script>                       
+  <script type="text/javascript" src="../static/js/jquery.waterwheelCarousel.min.js"></script>  
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var carousel = $("#carousel").waterwheelCarousel({
+        flankingItems: 3,
+        movingToCenter: function ($item) {
+          $('#callback-output').prepend('movingToCenter: ' + $item.attr('id') + '<br/>');
+        },
+        movedToCenter: function ($item) {
+          $('#callback-output').prepend('movedToCenter: ' + $item.attr('id') + '<br/>');
+        },
+        movingFromCenter: function ($item) {
+          $('#callback-output').prepend('movingFromCenter: ' + $item.attr('id') + '<br/>');
+        },
+        movedFromCenter: function ($item) {
+          $('#callback-output').prepend('movedFromCenter: ' + $item.attr('id') + '<br/>');
+        },
+        clickedCenter: function ($item) {
+          $('#callback-output').prepend('clickedCenter: ' + $item.attr('id') + '<br/>');
+          
+        }
+      });
+
+      $('#prev').bind('click', function () {
+        carousel.prev();
+        return false
+      });
+
+      $('#next').bind('click', function () {
+        carousel.next();
+        return false;
+      });
+
+      $('#reload').bind('click', function () {
+        newOptions = eval("(" + $('#newoptions').val() + ")");
+        carousel.reload(newOptions);
+        return false;
+      });
+
+    });
+     
+    function ch(tag){
+        var a=document.getElementById("container1");
+        var b=document.getElementById("container2");/*container 2 和container3都是热门分类*/
+        var c=document.getElementById("container4");
+        var d=document.getElementById("container3");
+        if(tag=='recent'){
+            a.style.display="block";
+            b.style.display="none";
+            c.style.display="none";
+            d.style.display="none";
+        }
+        else if(tag=='pop'){
+            a.style.display="none";
+            b.style.display="block";
+            c.style.display="none";
+            d.style.display="block";
+        }
+        else{
+            a.style.display="none";
+            b.style.display="none";
+            c.style.display="block";
+            d.style.display="none";
+        }
+    }
+  </script>
+
+
+</body>
+
+</html>

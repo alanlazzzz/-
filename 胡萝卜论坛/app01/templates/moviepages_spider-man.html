@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset=" UTF-8">
+      
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="referrer" content="no-referrer" />
+        <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+        {% load static %}
+        <!-- <meta name="description" content="">
+          <meta name="author" content=""> -->
+      
+        <!-- 地址栏中网页前端logo -->
+        <link rel="icon" href="../static/imgs/icon.png">
+      
+        <title>胡萝卜</title>
+      
+        <!-- Bootstrap core CSS -->
+        <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+      
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <link href="../static/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+      
+        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <script src="../static/js/ie-emulation-modes-warning.js"></script>
+      
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+            <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+          <![endif]-->
+
+        <!-- Custom styles for this template -->
+        <link href="../static/css/carousel.css" rel="stylesheet">
+        <link rel="stylesheet" href="../static/css/nav.css">
+        <link rel="stylesheet" href="../static/css/footer.css">
+        <link rel="stylesheet" href="../static/css/pages.css">
+        <link rel="stylesheet" href="../static/css/poster.css">
+        <link rel="stylesheet" href="../static/css/card.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/htmleaf-demo.css">
+        <style>
+          html,body {
+            height:100%;
+            width:100%;
+            background-color: whitesmoke;
+          }
+          hr.style1 {
+            border: 0;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+          }
+          a:hover{text-decoration: none}
+        </style>
+      </head>
+
+<!-- NAVBAR
+================================================== -->
+<body style="overflow-x: hidden">
+    {% include 'navbar.html' %}
+<!--wrapper-->
+<div id="container4" class="container" style="margin: 2% 0 0 2%;position: relative;opacity: 0.95;">
+    <div class="card" style="margin: 5% 3%;overflow-x:hidden;word-break:break-all;background-color: whitesmoke;width: 700px">
+        <div id="wrapper" style="float: left; margin: 5% 3%">
+            <div id="content">
+              <h1>
+                <span class="title">蜘蛛侠：英雄远征 Spider-Man: Far From Home
+                <span class="year">(2019)</span></span>
+              </h1>
+            </div>
+            <div class="grid-16-8"style="position: relative;">
+              <div class="article">
+                <div class="indent clearfix">
+                  <div class="subjectwrap clearfix">
+                    <div class="subject clearfix">
+                      <div id="mainpic" class>
+                        <img src="../static/imgs/movies/poster1.jpg" title="蜘蛛侠：英雄远征" alt="Spider-Man: Far From Home">
+                      </div>
+                      <div id="info">
+                        <span><!--导演-->
+                          <span class="p1">导演</span>
+                          :
+                          <span class="attrs">乔·沃茨</span>
+                        </span>
+                        <br>
+                        <span><!--编剧-->
+                            <span class="p1">编剧</span>
+                            : 
+                            <span class="attrs">
+                              克里斯·麦克纳 / 埃里克·萨默斯 / 史蒂夫·迪特寇 / 斯坦·李
+                            </span>
+                        </span>
+                        <br>
+                        <span><!--主演-->
+                          <span class="p1">主演</span>
+                          : 
+                          <span class="attrs">
+                              汤姆·赫兰德 / 赞达亚 / 杰克·吉伦哈尔 / 寇碧·史莫德斯 / 塞缪尔·杰克逊 /
+                              <span id="more" class="attrs" style="display: none">
+                                  乔恩·费儒 / 玛丽莎·托梅 / 雅各布·巴特朗 / 安格瑞·赖斯 / 马丁·斯塔尔 / 瑞米·海依 / 纽曼·阿卡 / 托尼·雷沃罗利
+                                  / J·B·斯穆夫 / 赫米基·马德拉 / 戴维娜·西塔拉姆 / 约瑟夫·朗 / 露丝·霍洛克斯 / 哈廷·帕特尔 /
+                                  杰罗恩·凡·康宁斯伯格 / 列尼斯·德洛桑托斯 / 查利·蕾娅·埃斯奎尔 / 费斯·洛根 / J·K·西蒙斯 / 小罗伯特·唐尼
+                              </span>
+                              <a id="link" class="more" href="javascript:showMore()" onclick="ch('more')">更多...<br></a>
+                          </span>
+                        </span>
+                        <span><!--类型-->
+                            <span class="p1">类型</span>
+                            : 
+                            <span class="attrs2">
+                              动作 / 科幻 / 冒险
+                            </span>
+                        </span>
+                        <br>
+                        <span><!--制片国家/地区-->
+                          <span class="p1">制片国家/地区</span>
+                          : 
+                          <span class="attrs2">
+                              美国
+                          </span>
+                        </span>
+                        <br>
+                        <span><!--语言-->
+                          <span class="p1">语言</span>
+                            : 
+                            <span class="attrs2">
+                              英语
+                          </span>
+                        </span>
+                        <br>
+                        <span><!--上映日期-->
+                          <span class="p1">上映日期</span>
+                            : 
+                            <span class="attrs2">
+                              2019-06-28(中国大陆) / 2019-07-02(美国)
+                            </span>
+                        </span>
+                        <br>
+                        <span><!--片长-->
+                          <span class="p1">片长</span>
+                            : 
+                            <span class="attrs2">
+                                127分钟
+                            </span>
+                        </span>
+                        <span><!--IMDb链接-->
+                          <span class="p1">IMDb链接</span>
+                            : 
+                            <span class="attrs">
+                                <a href="http://www.imdb.com/title/tt6320628">tt6320628</a>
+                            </span>
+                        </span>
+                        <br><br><br>
+                      </div>
+                      <div id="interest_sectl" >
+                        <div class="rating_wrap clearbox">
+                          <div class="clearfix">
+                            <div class="rating_logo ll">胡萝卜评分</div>
+                          </div>
+                          <br>
+                          <div class="rating_self clearfix">
+                            <div class="ll rating_num">8.2</div>
+                            <div class="rating_right">
+                              <div class="ll bigstar bigstar40"></div>
+                              <div class="rating_people">
+                                <span>99923人评价</span>
+                              </div>
+                            </div>
+                            <div class="rating-on-weight"style="float: left;">
+                              <div class="item">
+                                <span class="star5 starstop" title="力荐">
+                                  5星
+                                </span>
+                                <div class="power" style="width: 42px"></div>
+                                <span class="rating_per">31.3%</span>
+                                <br>
+                              </div>
+                              <div class="item">
+                                <span class="star4 starstop" title="推荐">
+                                  4星
+                                </span>
+                                <div class="power" style="width: 64px"></div>
+                                <span class="rating_per">47.6%</span>
+                                <br>
+                              </div>
+                              <div class="item">
+                                <span class="star3 starstop" title="还行">
+                                  3星
+                                </span>
+                                <div class="power" style="width: 25px"></div>
+                                <span class="rating_per">18.9%</span>
+                                <br>
+                              </div>
+                              <div class="item">
+                                <span class="star2 starstop" title="较差">
+                                  2星
+                                </span>
+                                <div class="power" style="width: 2px"></div>
+                                <span class="rating_per">1.8%</span>
+                                <br>
+                              </div>
+                              <div class="item">
+                                <span class="star1 starstop" title="很差">
+                                  1星
+                                </span>
+                                <div class="power" style="width: 0px"></div>
+                                <span class="rating_per">0.4%</span>
+                                <br>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="rating_betterthan">
+                          <span>好于<span class="attrs">91% 科幻片</span> </span>
+                          <br>
+                          <span>好于<span class="attrs">94% 动作片</span> </span>
+                        </div>
+                      </div>
+                      <div class="related-info" style="margin:20px 5px">
+                          <a name="intro"></a>
+                          <h2>
+                            蜘蛛侠：英雄远征的剧情简介
+                               · · · · · ·
+                          </h2>
+                          <div class="indent" id="link-report">
+                            <span property="v:summary" class="">
+                          　　最受关注的漫威超级英雄大片《蜘蛛侠：英雄远征》依旧由导演乔·沃茨执导，汤姆·赫兰德继续饰演蜘蛛侠彼得·帕克。此次蜘蛛侠将前往欧洲展开新的征程，并将对抗由杰克·吉伦哈尔加盟饰演的大反派神秘客，赞达亚、雅各布·巴特朗、托尼·雷沃罗利等原班人马也将悉数回归。本片将于2019年7月5日北美上映，经历了第一部的成长经历后，蜘蛛侠又会面临怎样的危机？敬请期待。
+                              <br />
+                          　　…
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!--评论-->
+        <div id="comment" class="container" style="position: absolute;width:800px;left: 800px;">
+            <div class="card" style="margin: 5% 3%;overflow-x:hidden;word-break:break-all;background-color: whitesmoke;border:1.5px dashed #E98B2A">
+              <div class="comment">
+                <h3 style="text-align: center;font: 18px bold;margin-top: 2%">评论区</h3>
+                <div id="commentdet">
+                  <!--评论的具体内容-->
+                  <ul style="text-align: left;margin:0% 3% 3% 0%;">
+                    <li>
+                      <a href="#" >关于蜘蛛侠的评论</a><br><a href="#">Users</a>
+                      <p>不是亿万富翁，不是天神后代，之所以成为漫威一哥，就是因为他最接近普通人。 他并不完美，相反，
+                        他会犯错，会轻易相信别人； 会自卑，会觉得自己的能力配不上梦想。 但正是这些缺
+                        点让他更加有血有肉，更让人感同身受。 他也想和MJ一起看话剧，但不得不去拯救世界； 他也想追求喜欢的女生，但他选择了牺牲小我，
+                        成就大我。 因为“能力愈大，责任俞大”，因为“欲戴王冠，必承其重”。 人人都想知道他能不能成为下一个钢铁侠。 答案是否定的
+                        ，他就是蜘蛛侠，他不需要成为任何人。 元素众的出现
+                        ，打乱了他所有的计划。 后来才发现，即使他搞砸了一切，MJ也仍然喜欢他。两情相悦的真挚，胜过精心策划的仪式。 
+                        人生不像做菜，把所有的料都准备好了才下锅。生活不可能
+                        完全按照你的计划进行。 彼得·帕克和MJ的爱情，是一种不完美的完美。一切都是最好的安排。</p>
+                    </li>
+                  </ul>
+                </div>
+          
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+
+
+
+
+<!--页尾begin-->
+<hr class="style1" style="height: 1px;">
+<div class="h_footer" style="position:relative">
+  <div class="footer_info"style="position:relative">
+    <div class="footer_infowrap">
+      <div class="b_logo">
+        <img src="../static/imgs/icon.png" width="105" height="105" alt="胡萝卜" title="胡萝卜">
+      </div>
+      <div class="h_wx fl">
+        <ul class="h_wxwrap">
+          <li class="h_wb">
+            <img src="../static/imgs/icon.png" width="65" height="65" alt="微博" title="微博">
+          </li>
+          <li>
+            <img src="../static/imgs/icon.png" width="65" height="65" alt="微信" title="微信">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="f_wz">
+    <a href="#">关于我们</a>
+    <a href="#">加入我们</a>
+    <a href="#">法律条款</a>
+    <a href="#">隐私政策</a>
+    <p>Carrot</p>
+  </div>
+</div>
+<!--页尾end-->
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="../static/js/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+  <script src="../static/js/bootstrap.min.js"></script>
+  <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+  <script src="../static/js/holder.min.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="../static/js/jquery-ui-1.10.4.min.js"></script>
+  <script src="../static/js/responsive-layered-slider.js"></script>                       
+  <script type="text/javascript" src="../static/js/jquery.waterwheelCarousel.min.js"></script>  
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var carousel = $("#carousel").waterwheelCarousel({
+        flankingItems: 3,
+        movingToCenter: function ($item) {
+          $('#callback-output').prepend('movingToCenter: ' + $item.attr('id') + '<br/>');
+        },
+        movedToCenter: function ($item) {
+          $('#callback-output').prepend('movedToCenter: ' + $item.attr('id') + '<br/>');
+        },
+        movingFromCenter: function ($item) {
+          $('#callback-output').prepend('movingFromCenter: ' + $item.attr('id') + '<br/>');
+        },
+        movedFromCenter: function ($item) {
+          $('#callback-output').prepend('movedFromCenter: ' + $item.attr('id') + '<br/>');
+        },
+        clickedCenter: function ($item) {
+          $('#callback-output').prepend('clickedCenter: ' + $item.attr('id') + '<br/>');
+          
+        }
+      });
+
+      $('#prev').bind('click', function () {
+        carousel.prev();
+        return false
+      });
+
+      $('#next').bind('click', function () {
+        carousel.next();
+        return false;
+      });
+
+      $('#reload').bind('click', function () {
+        newOptions = eval("(" + $('#newoptions').val() + ")");
+        carousel.reload(newOptions);
+        return false;
+      });
+
+    });
+     
+    function ch(tag){
+        var a=document.getElementById("container1");
+        var b=document.getElementById("container2");/*container 2 和container3都是热门分类*/
+        var c=document.getElementById("container4");
+        var d=document.getElementById("container3");
+        if(tag=='recent'){
+            a.style.display="block";
+            b.style.display="none";
+            c.style.display="none";
+            d.style.display="none";
+        }
+        else if(tag=='pop'){
+            a.style.display="none";
+            b.style.display="block";
+            c.style.display="none";
+            d.style.display="block";
+        }
+        else{
+            a.style.display="none";
+            b.style.display="none";
+            c.style.display="block";
+            d.style.display="none";
+        }
+    }
+    function showMore(tag){
+      var show = document.getElementById('more');
+      var remove = document.getElementById('link');
+      show.style.display="block";
+      remove.style.display="none";
+    } 
+  </script>
+
+
+</body>
+
+</html>

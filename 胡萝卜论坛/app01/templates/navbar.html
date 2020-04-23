@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="icon" href="{% static 'imgs/carrot.png' %}" type='image/png'>
+    <title>胡萝卜</title>
+    <link href="{% static 'css/bootstrap.min.css' %} " rel="stylesheet">
+
+    <link href="{% static 'css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
+    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'css/nav.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+    
+    <title>Document</title>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+            <div class="container">
+                <a id='page-f' class="navbar-brand" href="/home/">
+                  <img src="{% static 'imgs/carrot.png' %}"  style="display: inline; margin-top: -5px; width: 50px; height: 50px;" >胡萝卜</a>
+                <ul class="nav navbar-nav">
+                  <li class="active"><a id='index_p' href="/home/">主页</a></li>
+                  <!-- 主页导航栏 -->
+                  <li><a id='music_p' href="/music/">音乐</a></li>
+                  <li><a id='book_p' href="/book/">书籍</a></li>
+                  <li><a id='movie_p' href="/movie/">电影</a></li>
+    
+                </ul>
+
+                  <!-- search搜索栏 -->
+              <span>
+                <form action="/search/" id="y1" method='POST'> 
+                  {% csrf_token %}
+                    <input type="serach" name='ppt' stlye="height=50px" class="search-input" placeholder="       请输入搜索内容" required > 
+                    <button style='background-color: transparent; border-width: 0px;' type="submit">
+                      <img src="{% static 'imgs/timg.jpg' %}" alt="123" width=20px height=20px
+                        style="position: relative;left:-25px;z-index: 1; width: 20px;">
+                    </button>
+                </form>
+              </span>
+              <!-- search搜索栏结束 -->
+                {% if not userdata.tag %}
+                <div class='login-reg'>
+                  <span>
+                    <a class='login' href="/login/">登录</a> 
+                  </span>
+                  <span>
+                    <a class='register' href="/register/">注册</a>
+                  </span>
+                </div>
+                {% else %}
+                <div class='login-reg'>
+                    <span>
+                      <a href="/index/" >
+                      <img src="{% static userdata.headimg %}" style=" width:37px; height:37px;" >
+                      </a>
+                      <!-- <a class='login' href="#">个人中心</a>  -->
+                    </span>
+                    
+                    <span>
+                      <a class='logout' href="/logout/" style='right:-15px'>退出</a>
+                    </span>
+                  </div>
+                {% endif %}          
+              </div>
+            </ul>     
+            </div>    
+            </ul>
+        </div>
+      </nav>
+      </div>  
+
+
+
+      
+</body>
+</html>

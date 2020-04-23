@@ -1,0 +1,22 @@
+.search-input{
+    position:relative;
+    left:15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height: 30px;
+    width: 254px;
+    border-radius:15px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 37px;
+}
+
+  .img {
+    z-index: 1;
+    position: absolute;
+
+  }

@@ -1,0 +1,56 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 100%;
+    border-radius: 2%;
+  }
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.card div.toprating{
+    background-color: #77969A;
+    overflow-y :auto;
+    overflow-x: hidden;
+    max-width: 100%;
+    padding-bottom: 100%;
+    height: 0;
+    text-align: left;
+    position: relative;
+}
+div.toprating::-webkit-scrollbar{
+    width:10px;
+    height: 1px;
+}
+div.toprating::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: #535353;
+}
+div.toprating::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    background: #EDEDED;
+}
+div.toprating h4{
+    white-space: nowrap;
+    color: aliceblue;
+    word-wrap:break-word;
+}
+div.toprating p{
+    white-space: nowrap;
+    color: ghostwhite;
+    word-wrap:break-word;
+}
+div.toprating p.intr{
+    white-space: nowrap;
+    color: ghostwhite;
+    font-family:"Times New Roman", Times, serif;
+    font-size:0.875em;
+    word-wrap:break-word;
+    margin: 2% 5%;
+}
+div.toprating img{
+    position: relative;
+    padding: 0;
+    margin: 0;
+}

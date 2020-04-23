@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login_style.css' %}">
+    <style type="text/css">
+        #web_bg {
+            background-image: url("{% static 'imgs/login.jpg' %}");
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            min-width: 1000px;
+            z-index: -10;
+            zoom: 1;
+            background-color: #fff;
+            background-repeat: no-repeat;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -o-background-size: cover;
+            background-position: center 0;
+        }
+    </style>
+</head>
+
+<body>
+    <span id="login_box">
+        <h1 style="padding:30px;text-align: center;font-family:Arial, Helvetica, sans-serif;color: #fff" ;>Login</h1>
+        <form action="/login/" method="POST">
+            {% csrf_token %}
+            <input class='login' type="text" name='account' placeholder="      请输入账号" value="{{account}}" required><br>
+            <input class='login' type="password" name='passwd' placeholder="      请输入密码" value="{{password}}" required><br><br>
+            <div id="button3">
+                <input type="checkbox" value="yes" name="rem" checked="checked"/> 记住我
+            </div>
+            <br>
+            <button class='butt' type='submit'>马上登录</button><br><br>
+            <a class='butt2' href='/register/' style="color: #fff;text-decoration: none;">立即注册</a>
+            <br><br><p style="color: #fff;text-decoration: none;text-align: center;">{{ msg }}</p>
+        </form>
+    </span>
+
+    <div id='web_bg'></div>
+</body>
+
+</html>

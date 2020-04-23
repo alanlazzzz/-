@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+		<meta charset=" UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		{% load static %}
+		<link rel="icon" href="../static/images/book/未标题-1.png">
+		<title>胡萝卜</title>
+		<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../static/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+		<script src="../static/js/ie-emulation-modes-warning.js"></script>
+		<link href="../static/css/carousel.css" rel="stylesheet">
+		<link href="../static/css/nav.css" rel="stylesheet">
+		<style>
+				body {
+				  background: #222;
+				  color: #fff;
+				  font-family: 'Quicksand', sans-serif;
+				  font-size: 18px;
+				}
+				
+				.main-content {
+				  margin: 5em auto;
+				  display: flex;
+				  flex-wrap: wrap;
+				  justify-content: center;
+				  text-align: center;
+				  text-transform: uppercase;
+				}
+				
+				h1 {
+				  width: 100%;
+				  margin: 0 auto 1.5em;
+				  font-size: 30px;
+				}
+				h1 small {
+				  text-transform: none;
+				  display: block;
+				  margin: 20px 0;
+				  font: 300 20px 'QuickSand', sans-serif;
+				  color: #999;
+				}
+				
+				.moleskine-wrapper {
+				  max-width: calc(100% / 4);
+				  min-width: 10em;
+				}
+				
+				.moleskine-notebook {
+				  height: 250px;
+				  width: 175px;
+				  position: relative;
+				  transition: .5s linear;
+				  border-radius: 5px 15px 15px 5px;
+				  transform-origin: left center 0px;
+				  display: inline-block;
+				  margin: 30px;
+				}
+				.moleskine-notebook:hover {
+				  transform: rotateZ(-10deg);
+				}
+				.moleskine-notebook:hover .notebook-cover {
+				  transform: rotateY(-50deg);
+				  z-index: 999;
+				  box-shadow: 20px 10px 50px rgba(0, 0, 0, 0.2);
+				}
+				
+				.notebook-cover {
+				  background: #cc4b48;
+				  height: 250px;
+				  width: 175px;
+				  position: absolute;
+				  border-radius: 5px 15px 15px 5px;
+				  z-index: 10;
+				  transition: .5s linear;
+				  transform-style: preserve-3d;
+				  transform-origin: left center 0px;
+				}
+				.notebook-cover:before {
+				  content: "";
+				  position: absolute;
+				  width: 10px;
+				  height: calc(100% + 2px);
+				  top: -1px;
+				  z-index: 100;
+				  border-radius: 2px;
+				  right: 25px;
+				  transition: 2s ease;
+				  background: linear-gradient(to right, #9c2e2b 0%, #cc4b48 12%, #9c2e2b 25%, #cc4b48 37%, #9c2e2b 50%, #cc4b48 62%, #9c2e2b 75%, #cc4b48 87%, #9c2e2b 100%);
+				}
+				
+				.notebook-cover.blue {
+				  background: #2e95aa;
+				}
+				.notebook-cover.blue:before {
+				  background: linear-gradient(to right, #1e606e 0%, #2e95aa 12%, #1e606e 25%, #2e95aa 37%, #1e606e 50%, #2e95aa 62%, #1e606e 75%, #2e95aa 87%, #1e606e 100%);
+				}
+				.notebook-cover.green {
+				  background: #abc3b5;
+				}
+				.notebook-cover.green:before {
+				  background: linear-gradient(to right, #7ea38e 0%, #abc3b5 12%, #7ea38e 25%, #abc3b5 37%, #7ea38e 50%, #abc3b5 62%, #7ea38e 75%, #abc3b5 87%, #7ea38e 100%);
+				}
+				.notebook-cover.yellow {
+				  background: #fed754;
+				}
+				.notebook-cover.yellow:before {
+				  background: linear-gradient(to right, #ebb501 0%, #fed754 12%, #ebb501 25%, #fed754 37%, #ebb501 50%, #fed754 62%, #ebb501 75%, #fed754 87%, #ebb501 100%);
+				}
+				
+				.notebook-skin {
+				  height: 50px;
+				  background: #e8e8e0;
+				  margin-top: 80px;
+				  padding: 15px;
+				  font-size: 12px;
+				  position: relative;
+				  z-index: 10;
+				  color: #222;
+				  text-align: left;
+				  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+				}
+				.notebook-skin:before {
+				  content: '';
+				  position: absolute;
+				  width: 100%;
+				  height: 15px;
+				  left: 0;
+				  bottom: 0;
+				  background: #cddc39;
+				}
+				
+				.notebook-page {
+				  height: 100%;
+				  width: 175px;
+				  position: absolute;
+				  background-color: #fbfae8;
+				  z-index: 0;
+				  border-radius: 5px 16px 16px 5px;
+				  overflow: hidden;
+				}
+				.notebook-page.ruled {
+				  background: linear-gradient(to bottom, #fbfae8 9px, #e4e4e4 1px);
+				  background-size: 100% 10px;
+				}
+				.notebook-page.squared {
+				  background-image: linear-gradient(#e4e4e4 1px, transparent 1px), linear-gradient(90deg, #e4e4e4 1px, transparent 1px);
+				  background-size: 10px 10px, 10px 10px, 2px 2px, 2px 2px;
+				}
+				.notebook-page.dotted {
+				  background: linear-gradient(90deg, #fbfae8 10px, transparent 1%) center, linear-gradient(#fbfae8 10px, transparent 1%) center, #999;
+				  background-size: 11px 11px;
+				}
+				
+				footer {
+				  text-align: center;
+				  margin: 8em auto;
+				  width: 100%;
+				}
+				footer a {
+				  text-decoration: none;
+				  display: inline-block;
+				  width: 45px;
+				  height: 45px;
+				  border-radius: 50%;
+				  background: transparent;
+				  border: 1px dashed #fff;
+				  color: #fff;
+				  margin: 5px;
+				}
+				footer a:hover {
+				  background: rgba(255, 255, 255, 0.1);
+				}
+				footer a .icons {
+				  margin-top: 12px;
+				  display: inline-block;
+				  font-size: 20px;
+				}
+				hr.style1 {
+					border: 0;
+					background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+				}
+				</style>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<meta name="description" content="Animated Books with CSS 3D Transforms" />
+<meta name="keywords" content="book, 3d, interactive, animated, 3d transform, css, web design" />
+<meta name="author" content="Marco Barría for Codrops" />
+<link rel="shortcut icon" href="../favicon.ico">
+<link rel="stylesheet" type="text/css" href="../static/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/demo.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/book2.css" />
+<script src="../static/js/modernizr.custom.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../static/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/demo.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/bookblock.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/component.css" />
+<link rel="stylesheet" href="../static/css/footer.css">
+<script src="../static/js/modernizr.custom.js"></script>
+<link href="../static/css/carousel.css" rel="stylesheet">
+<title>Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" type="text/css" href="../static/css/style_book.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/zoomslider.css" />
+<link rel="stylesheet" href="../static/css/lightbox.css">
+<link href="../static/css/owl.carousel.css" rel="stylesheet" type="text/css" media="all"> 
+<link href="../static/css/font-awesome.css" rel="stylesheet"> 
+<script type="text/javascript" src="../static/js/modernizr-2.6.2.min.js"></script>
+<script src="../static/js/jquery-2.2.3.min.js"></script>
+<script src="../static/js/bootstrap.js"></script>
+<link href="http://fonts.googleapis.com/css?family=Josefin+Sans:100,100i,300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i" rel="stylesheet">
+
+<script src="{% static 'plugins/editor.md/jquery.cookie.js' %}"></script>
+<script src="{% static 'plugins/editor.md/jquery.min.js' %}"></script>
+
+<script>
+	$(document).ready(function () {
+	  // $("#butt").click(function () {
+	  $.ajax({
+		async: true,
+		url: "/showArticle/" + "图书",
+		type: 'get',
+		// headers: { 'X-CSRFToken': $.cookie('csrftoken') },
+		success: function (data) {
+		  $('#md_show').append(data);
+		}
+	  });
+	  // });
+
+	});
+  </script>
+  <style>
+   /* 评论区标题和作者 */
+   #comment-author-style{
+            text-decoration: none;
+            color:black;
+            background-color: #ffc782c0;
+			/* margin-top: 15px; */
+            
+          }
+          #comment-author-style:hover,#comment-author-style:active{
+                color:whitesmoke;
+                background-color:rgba(0, 0, 0, 0.5); 
+				/* margin-top: 8px; */
+          }
+          #comment-title-style{
+            line-height: 16px;
+            padding:3px;
+            border-radius:3px;
+            text-decoration: none;
+            color:black;
+            background-color: whitesmoke;
+          }
+          #comment-title-style:hover,#comment-title-style:active{
+            padding:3px;
+            border-radius:3px;
+                color:whitesmoke;
+                background-color:black; 
+          }
+          #comment-box-style{
+            padding:10px;
+
+          }
+  </style>
+</head>
+<body style=" background-color: bisque;">
+		{% include 'navbar.html' %}
+			
+	<div style="margin-bottom:30px;" id="demo-1" data-zs-src='["../static/imgs/book/1.jpg","../static/imgs/book/2.jpg","../static/imgs/book/3.jpg","../static/imgs/book/4.jpg"]' data-zs-overlay="dots">
+		<div class="demo-inner-content">
+			<div class="header-w3-agileits" id="home">
+				<div class="inner-header-agile">	
+				<nav class="navbar navbar-default">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						
+					</div>
+					<div class="clearfix"> </div>	
+				</nav>
+			</div> 
+
+			   </div>
+			   <div class="baner-info">
+			       <h4>为中华之崛起而读书</h4>
+				   <h3><span>胡</span>萝卜 <span>读书</span>社区</h3>
+				  <p>今日新书</p>
+					<a class="hvr-rectangle-out w3_play_icon1" href="#" data-toggle="modal" data-target="#myModal3"> 点击查看</a>
+				  </div> 				
+			
+			<div style="margin-left: 15%; margin-top: 80px; ">
+					<h2 style="margin-left: 36%; color: white; margin-top: -40px; margin-bottom: 40px;">文学新闻</h2>
+					<span style="text-align: center;float:left; margin-right: 80px;">
+						<ul>
+							<li><a target="_blank" href="http://book.sina.com.cn/news/whxw/2019-06-21/doc-ihytcerk8414711.shtml" style="color: white; font-size: 25px;">“安东尼·布朗的幸福博物馆”</a></li>
+							<li><a target="_blank" href="http://book.sina.com.cn/news/whxw/2019-06-20/doc-ihytcerk8105356.shtml" style="color: white; font-size: 25px;">吉林人民出版社与新浪阅...</a></li>
+							<li><a target="_blank" href="http://book.sina.com.cn/news/whxw/2019-06-19/doc-ihytcitk6142199.shtml" style="color: white; font-size: 25px;">作家江南称影版《上海堡...</a></li>
+						</ul>
+					</span>
+					<span style="text-align: center;float:left; margin-right: 80px;">
+							<ul>
+								<li><a target="_blank" href="http://book.sina.com.cn/news/whxw/2019-06-19/doc-ihytcitk6219185.shtml" style="color: white; font-size: 25px;">面包男孩2：你爱苦瓜...</a></li>
+								<li><a target="_blank" href="http://book.sina.com.cn/news/whxw/2019-06-18/doc-ihytcerk7705019.shtml" style="color: white; font-size: 25px;">《少年科学画报》创刊40...</a></li>
+								<li><a target="_blank" href="http://book.sina.com.cn/news/whxw/2019-06-17/doc-ihvhiqay6132827.shtml" style="color: white; font-size: 25px;">《让一切光源都熄灭》分...</a></li>
+							</ul>
+					</span>
+					<span style="text-align: center;float:left; margin-right: 80px;">
+							<ul>
+								<li><a target="_blank" href="http://book.sina.com.cn/news/whxw/2019-06-12/doc-ihvhiews8209548.shtml" style="color: white; font-size: 25px;">斯人已逝唯书长存：阿...</a></li>
+								<li><a target="_blank" href="http://book.sina.com.cn/news/whxw/2019-06-03/doc-ihvhiews6558911.shtml" style="color: white; font-size: 25px;">严歌苓、李少红强强联...</a></li>
+								<li><a target="_blank" href="http://book.sina.com.cn/news/whxw/2019-05-31/doc-ihvhiqay2610272.shtml" style="color: white; font-size: 25px;">阿来《云中记》研讨：...</a></li>
+							</ul>
+					</span>
+				</div>
+
+		</div> 
+		</div>
+		
+
+
+
+		<div style="margin: 16%; margin-top: -1px;">
+			<h1 style="text-align:center">男生流行</h1>
+			<br>
+			<div>
+				<div style="text-align: center; float: left;">
+				<a target="_blank" href="/book/b1"><img src="../static/imgs/02.jpg" width="232px;" style="margin-right:20px;"><br><span style="color:black; font-size:20px;">朝花夕拾</span></a>
+				</div>
+				<div style="text-align: center; float: left;">
+						<a target="_blank" href="/book/b2"><img src="../static/imgs/04.jpg" width="232px;" style="margin-right:20px;"><br><span style="color:black; font-size:20px;">淘气包马小跳</span></a>
+				</div>
+				<div style="text-align: center; float: left;">
+						<a target="_blank" href="/book/b3"><img src="../static/imgs/06.jpg" width="232px;" style="margin-right:20px;"><br><span style="color:black; font-size:20px;">三体</span></a>
+				</div>
+				<div style="text-align: center; float: left;">
+						<a target="_blank" href="/book/b4"><img src="../static/imgs/08.jpg" width="232px;" style="margin-right:20px;"><br><span style="color:black; font-size:20px;">子夜</span></a>
+				</div>			
+			</div>
+			<br><br><br><br><br><br>
+
+			<h1 style="text-align:center; margin-top:10px;">女生流行</h1>
+			<br>
+			<div>
+				<div style="text-align: center; float: left;">
+				<a target="_blank" href="/book/b5"><img src="../static/imgs/10.jpg" width="232px;" style="margin-right:20px;"><br><span style="color:black; font-size:20px;">后来的我们</span></a>
+				</div>
+				<div style="text-align: center; float: left;">
+				<a target="_blank" href="/book/b6"><img src="../static/imgs/12.jpg" width="232px;" style="margin-right:20px;"><br><span style="color:black; font-size:20px;">倾城之恋</span></a>
+				</div>
+				<div style="text-align: center; float: left;">
+				<a target="_blank" href="/book/b7"><img src="../static/imgs/14.jpg" width="232px;" style="margin-right:20px;"><br><span style="color:black; font-size:20px;">目送</span></a>
+				</div>
+				<div style="text-align: center; float: left;">
+				<a target="_blank" href="/book/b8"><img src="../static/imgs/16.jpg" width="232px;" style="margin-right:20px;"><br><span style="color:black; font-size:20px;">撒哈拉的故事</span></a>
+				</div>		
+			</div>
+		</div>
+
+		<br><br><br><br>
+		<div style="background-color: bisque; width: 100%; height: 400px;">
+			<div id="comment" class="container" style="position: relative;">
+				<div class="card" style="margin: 5% 3%;overflow-x:hidden;word-break:break-all;text-align: center;">
+					<div class="comment">
+						<h3 style="text-align:center; margin-top:10px;">评论区</h3>
+						<div id='md_show' >
+
+							<!--评论的具体内容-->
+							
+								
+						
+						</div>
+			
+					</div>
+				</div>
+			</div>
+		</div>
+
+  
+	<script type="text/javascript" src="../static/js/jquery.zoomslider.min.js"></script>
+	
+
+		<div class="modal video-modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModal3">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+						  胡萝卜——今日新书推荐
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+						</div>
+							<div class="modal-body">
+								<p style="word-spacing:40pm">1.  三体：死生永生——刘慈欣</p>
+								<p style="word-spacing:40pm">2.  平凡的世界——路遥</p>
+								<p style="word-spacing:40pm">3.  朝花夕拾——鲁迅</p>
+								<p style="word-spacing:40pm">4.  斗罗大陆——唐家三少</p>
+								<p style="word-spacing:40pm">5.  龙族——江南</p>
+								<p style="word-spacing:40pm">6.  骆驼祥子——老舍</p>
+								<p style="word-spacing:40pm">7.  随想录——巴金</p>
+								<p style="word-spacing:40pm">9.  银河之心——江波</p>
+								<p style="word-spacing:40pm">10.  繁星 春水——冰心</p>
+							</div>
+					</div>
+				</div>
+			</div>
+
+
+<script type="text/javascript" src="../static/js/numscroller-1.0.js"></script>
+	
+<script src="../static/js/SmoothScroll.min.js"></script>
+
+
+   <div class="main-content">
+	<h1>
+	  合作伙伴<small></small></h1>
+	<div class="moleskine-wrapper">
+	  <div class="moleskine-notebook">
+		<div class="notebook-cover">
+		  <div class="notebook-skin"><a href="https://www.qidian.com/">网络小说</a></div>
+		</div>
+		<div class="notebook-page"></div>
+	  </div>
+	  <h4>起点中文网</h4>
+	</div>
+	<div class="moleskine-wrapper">
+	  <div class="moleskine-notebook">
+		<div class="notebook-cover blue">
+		  <div class="notebook-skin"><a href="http://yc.ifeng.com/?_bookch=top">综合书城</a></div>
+		</div>
+		<div class="notebook-page ruled"></div>
+	  </div>
+	  <h4>凤凰书城</h4>
+	</div>
+	<div class="moleskine-wrapper">
+	  <div class="moleskine-notebook">
+		<div class="notebook-cover yellow">
+		  <div class="notebook-skin"><a href="https://weread.qq.com/">出版图书</a></div>
+		</div>
+		<div class="notebook-page squared"></div>
+	  </div>
+	  <h4>微信读书</h4>
+	</div>
+	<div class="moleskine-wrapper">
+	  <div class="moleskine-notebook">
+		<div class="notebook-cover green">
+		  <div class="notebook-skin"><a href="https://book.douban.com/">图书讨论</a></div>
+		</div>
+		<div class="notebook-page dotted"></div>
+	  </div>
+	  <h4>豆瓣读书</h4>
+	</div>
+  </div> 
+
+	
+	<hr class="style1" style="height: 1px;">
+	<div class="h_footer" style="position:relative">
+		<div class="footer_info"style="position:relative">
+			<div class="footer_infowrap">
+				<div class="b_logo">
+					<img src="../static/imgs/icon.png" width="65" height="65" alt="胡萝卜" title="胡萝卜">
+				</div>
+				<div class="h_wx fl">
+					<ul class="h_wxwrap">
+						<li class="h_wb">
+							<img src="../static/imgs/icon.png" width="65" height="65" alt="微博" title="微博">
+						</li>
+						<li>
+							<img src="../static/imgs/icon.png" width="65" height="65" alt="微信" title="微信">
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="f_wz">
+			<a href="#">关于我们</a>
+			<a href="#">加入我们</a>
+			<a href="#">法律条款</a>
+			<a href="#">隐私政策</a>
+			<p>Carrot</p>
+		</div>
+	</div>
+	<div style="text-align:center;font-size: 35px"><a href="#">返回顶部</a></div> 
+  </body>
+ </html> 

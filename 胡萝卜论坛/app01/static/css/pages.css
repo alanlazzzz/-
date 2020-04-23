@@ -1,0 +1,238 @@
+/* 分页详细内容 CSS
+-------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+h1 .title{
+    word-wrap: break-word;
+    display: block;
+    font-size: 26px;
+    font-weight: bold;
+    color: #494949;
+    margin: 0;
+    padding: 0 0 15px 0;
+    line-height: 1.1;
+}
+h1 .year {
+    color: #888;
+    font-size: 20px;
+}
+
+.year {
+    display: inline-block;
+    zoom: 1;
+}
+
+
+body .grid-16-8 .article {
+    padding-right: 25px;
+}
+
+.grid-16-8 .article {
+    width: 675px;
+}
+
+.indent {
+    *zoom: 1;
+    margin-bottom: 30px;
+}
+
+.clearfix {
+    display: block;
+}
+.clearfix {
+    zoom: 1;
+    display: inline-block;
+    _height: 1px;
+}
+.indent {
+    word-break: break-all;
+}
+.clearfix {
+    display: block;
+}
+.clearfix {
+    zoom: 1;
+    display: inline-block;
+    _height: 1px;
+}
+
+.clearbox {
+    clear: both;
+    width: 100%;
+}
+.subjectwrap {
+    position: relative;
+    float: left;
+    width: 100%;
+    margin-bottom: 15px;
+}
+span{
+    font: 14px sans-serif;
+}
+.ll {
+    float: left;
+}
+.pl {
+    font: 12px Arial, Helvetica, sans-serif;
+    line-height: 150%;
+    color: #666666;
+}
+#content h2 {
+    color: #007722;
+}
+
+html h2 {
+    font-size: 16px;
+}
+h2 {
+    font: 15px Arial, Helvetica, sans-serif;
+    color: #072;
+    margin: 0 0 12px 0;
+    line-height: 150%;
+}
+.attrs{
+    color:#1E88A8 ;
+}
+.attrs2{
+    color:black ;
+}
+.more{
+    font: italic;
+    color: #666666;
+}
+/*init*/
+.subject {
+    width: 500px;
+    float: left;
+}
+
+.subject #mainpic {
+    margin-right: 15px;
+}
+
+
+#mainpic {
+    margin: 3px 0 0 0;
+    float: left;
+    text-align: center;
+    margin: 3px 12px 0 0;
+    max-width: 155px;
+    overflow: hidden;
+}
+
+#mainpic img {
+    max-width: 135px;
+    border-width: 0;
+    vertical-align: middle;
+    margin-bottom: 10px;
+}
+
+#info {
+    max-width: 333px;
+    float: left;
+    word-wrap: break-word;
+}
+
+#interest_sectl {
+    position: absolute;
+    top: 0%;
+    left: 100%;
+    float: left;
+    width: 155px;
+    margin: 2px 0 0 0;
+    padding: 0 0 0 15px;
+    border-left: 1px solid #eaeaea;
+    color: #9b9b9b;
+}
+#interest_sectl .rating_wrap {
+    padding-bottom: 15px;
+    font-size: 12px;
+    line-height: 14px;
+}
+#interest_sectl .rating_wrap .rating_logo {
+    line-height: 1;
+}
+#interest_sectl .rating_self {
+    padding: 0;
+    line-height: 2;
+}
+#interest_sectl .rating_num {
+    position: relative;
+    color: #494949;
+    padding: 0;
+    min-width: 30%;
+    font-size: 28px;
+}
+#interest_sectl .rating_right {
+    float: left;
+    padding: 10px 0 10px 6px;
+}
+.bigstar40 {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    background: -webkit-image-set(url(../imgs/star_4.png) 2.5x) no-repeat;
+    width: 75px;
+    height: 15px;
+    margin: 1px 0 0 0;
+    overflow: hidden;
+}
+.bigstar30 {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    background: -webkit-image-set(url(../imgs/star_3.png) 2.5x) no-repeat;
+    width: 75px;
+    height: 15px;
+    margin: 1px 0 0 0;
+    overflow: hidden;
+}
+.bigstar50 {
+    position: absolute;
+    right: 15px;
+    top: 25px;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    background: -webkit-image-set(url(../imgs/star_5.png) 4x) no-repeat;
+    width: 75px;
+    height: 15px;
+    margin: 1px 0 0 0;
+    overflow: hidden;
+}
+.rating_people{
+    font: 10px Arial, Helvetica, sans-serif;
+    color:#1E88A8 ;
+}
+
+.starstop {
+    float: left;
+    font-size: 11px;
+}
+.starstop, .stars {
+    margin-right: 3px;
+}
+
+.starstop {
+    margin: 0;
+}
+.power {
+    height: 10px;
+    float: left;
+    margin: 3px 4px;
+    background: #ffd596 none repeat scroll 0 0;
+}
+#interest_sectl .rating_per {
+    font-size: 11px;
+    float: left;
+    margin: 0;
+}
+#interest_sectl .rating_betterthan {
+    position: relative;
+    padding: 15px 0;
+    border-top: 1px solid #eaeaea;
+    color: #9b9b9b;
+    margin: 0;
+}

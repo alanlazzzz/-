@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="keywords" content="" />
+    {% load static %}
+    <!-- css文件加载 -->
+    <link rel="stylesheet" media="all" href="{% static 'css/xx.css' %}">
+    <link rel="stylesheet" media="all" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" media="all" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/picwall.css' %}">
+    <link href="css/fontawesome-all.min.css" rel="stylesheet">
+    <!-- online-fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet">
+    <!-- js文件加载 -->
+    <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.cookie.js' %}"></script>
+    <!-- =============================编辑器插件===================================================== -->
+    <link rel="stylesheet" href="{% static 'plugins/editor.md/css/editormd.min.css' %}" />
+    <script type="text/javascript" src="{% static 'plugins/editor.md/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'plugins/editor.md/editormd.min.js' %}"></script>
+    <!-- =========================================================================================== -->
+    <script type="text/javascript">
+        $(function () {
+            var editor = editormd("editor", {
+                path: "{% static 'plugins/editor.md/lib/' %}",
+                width: "100%",
+                height: "50%",
+                tex:true,
+                markdown: "请在此处使用Markdown语法编写",     // dynamic set Markdown text
+            });
+        });
+    </script>
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>    
+    <!-- //online-fonts -->
+    <style>
+        .u1 {
+            position: absolute;
+            right: 50px;
+            z-index: 10000;
+            font-size: x-large;
+        }
+    </style>
+    <script>
+        function onblursignature() {
+            document.getElementById('signature').style.backgroundColor = 'transparent';
+            document.getElementById('signature').style.color = 'white';
+
+            Signature = $('#signature').val();
+            // alert("!!!!");
+            //发送ajax请求
+            $.ajax({
+                async: true,
+                url: '/index/saveSignature/' + Signature,
+                type: 'post',
+                // headers: { 'X-CSRFToken': $.cookie('csrftoken') },
+                success:function(data){
+                    $('#signature').val(data)
+                }
+            }
+            
+            );
+        }
+    </script>
+
+    <script>
+        function onfocussignature() {
+            document.getElementById('signature').style.backgroundColor = 'white';
+            document.getElementById('signature').style.color = 'black';
+        }
+    </script>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="sidenav">
+        <em style="width: 70px;height:70px;display: block;position: absolute;top:10%;z-index:10000; left: 80% ;">
+            <input type="file" id="csrf_token" value="{{ csrf_token }}" style="border-radius:70px; opacity:0; filter:alpha(opacity=0);
+                 height: 70px; width: 70px; position: absolute;top: 0px; z-index: 9;"
+                onchange="handleFiles(this,'icon')">
+            <img src="{% static userdata.headimg %}" style="border-radius:70px;height: 70px; width: 70px;" id="icon">
+        </em>
+        <script>
+            function handleFiles(obj, id) {
+                file = document.getElementById("icon");
+                var files = obj.files;
+                img = new Image();
+                if (window.URL) {
+                    //File API
+                    img.src = window.URL.createObjectURL(files[0]); //创建一个object URL，并不是你的本地路径
+                    img.onload = function (e) {
+                        window.URL.revokeObjectURL(this.src); //图片加载后，释放object URL
+                    }
+                }
+                file.src = img.src;
+                //上传文件
+                var fd = new FormData(),//实例化一个表单
+                    xhr = new XMLHttpRequest();
+                fd.append('headimg', files[0]);//追加图片元素
+
+                xhr.open('post', '/index/saveHeader/');//请求方式，请求地址
+                xhr.send(fd);
+            }
+        </script>
+        <br><br><br><br>
+        <textarea placeholder="点击此处添加个人签名" id="signature" onfocus="onfocussignature()" onblur="onblursignature()" 
+        style="width:200px; border-radius:10px; background-color: transparent; 
+        border-style:none; color:#ff7700; text-align:right;
+        margin-top:108px; margin-left:280px ;
+        font-size: 18px;font-family:Georgia, 'Times New Roman', Times, serif;
+        text-align: center; font-weight: bold; background-color: rgba(0,0,0,0.5);">{{ userdata.signature }}</textarea>
+    <script>
+    function handleFiles(obj, id) {
+        file = document.getElementById("icon");
+        var files = obj.files;
+        img = new Image();
+        if (window.URL) {
+            //File API
+            img.src = window.URL.createObjectURL(files[0]); //创建一个object URL，并不是你的本地路径
+            img.onload = function (e) {
+                window.URL.revokeObjectURL(this.src); //图片加载后，释放object URL
+            }
+        }
+        file.src = img.src;
+        //上传文件
+        var fd = new FormData(),//实例化一个表单
+            xhr = new XMLHttpRequest();
+        fd.append('headimg', files[0]);//追加图片元素
+
+        xhr.open('post', '/index/saveHeader/');//请求方式，请求地址
+        xhr.send(fd);
+    }
+    </script>
+        <!-- header -->
+        <header style="padding-top:100px">
+            <div class="container-fluid px-lg-5 " style="padding-top: 100px;">
+
+                <nav class="mnu mx-auto">
+                    <label for="drop" class="toggle">Menu</label>
+                    <input type="checkbox" id="drop">
+                    <ul class="menu" style="padding:0px;">
+                        
+                        <li class="mt-sm-3"><a href="#gallery" class="scroll" style="font-size: 1.5em;font-weight:normal" >照片墙</a></li>
+                        <!-- <li class="mt-sm-3"><a href="#services" class="scroll">Services</a></li> -->
+                        <!-- <li class="mt-sm-3"><a href="#news" class="scroll">照片墙</a></li> -->
+                        <li class="mt-sm-3" style="padding-top:50px;"><a href="#contact" class="scroll" style="font-size: 1.5em; font-weight:normal">日志</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    </div>
+    <div class="main" id="about">
+        <div class="banner-text-w3ls">
+            <div class="container">
+                <div class="mx-auto text-left">
+                    <h2>我的简介</h2>
+                    <p class="banp mt-5">欢迎，{{ nickname }}</p>
+                </div>
+            </div>
+        </div>
+        <!-- Gallery -->
+        <section class="gallery" id="gallery">
+            <div class="container py-lg-5">
+                <h3 class="w3_head mb-5">照片墙</h3>
+                <div class="row news-grids mt-lg-5 mt-4 text-center masonry">
+                        {% for pic in piclstpath %}
+                        <div class="col-md-6 gal-img picwall-show-box">
+                            {% if pic.picid %}
+                                <a href="#{{ pic.picid }}"><img class="picwall-show" src="{% static  pic.picid  %}" alt="news image" class="img-fluid"></a>
+                            {% else %}
+                                <a href="#gal1"><img class="picwall-show" src="{% static 'imgs/default-picwall.png' %}" alt="news image" class="img-fluid"></a>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                </div>
+            </div>
+            {% for pic in piclstpath %}
+            <div id="{{ pic.picid }}" class="pop-overlay animate">
+                <div class="popup picwall-info-box">
+                    <img class="picwall-info" src="{% static  pic.picid  %}" alt="Popup Image" class="img-fluid" />
+                    <p class="mt-4 picwall-text">{{ pic.text }}</p>
+                    <a class="close" href="#gallery">&times;</a>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- //popup -->
+            <!-- popup-->
+            <div id="gal1" class="pop-overlay animate">
+                <div class="popup picwall-info-box">
+                    <img class="picwall-info" src="{% static 'imgs/default-picwall.png' %}" alt="Popup Image" class="img-fluid" />
+                    <p class="mt-4">这家伙很懒，没有写简介</p>
+                    <a class="close" href="#gallery">&times;</a>
+                </div>
+            </div>
+        <!-- services -->
+        <section style="height:850px;" class="wedo" id="contact">
+            <h3 class="w3_head mb-5"> 日志 </h3>
+            <p class="banp mt-5"> 发表个人日志和看法</p>
+            <div style="right:0px;height:800px;width:100%;padding-right: 10px;" class="row mt-4">
+                <div style="right:0px;height:800px;width:100%;box-sizing: initial;padding-right: 10px;"
+                    class="col-lg-7 contact_grid_right">
+                    <!--表单数据-->
+                    <form style="margin:50px;right:0px;height:80%;width:100%;padding-right: 10px;" class="rf-info"
+                        action="/index/submit/" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <!-- <div style="height: 20%;"></div> -->
+                        <div id="editor">
+                            <!-- Tips: Editor.md can auto append a `<textarea>` tag -->
+                            <textarea name='Message' style="display:none;">### Hello Editor.md !</textarea>
+                        </div>
+                        <div class="row contact_top">
+                            <div class="col-sm-6">
+                                <input type="text" name="Name" placeholder="题目" required="">
+                            </div>
+                            <div class="col-sm-6">
+                                <!--addbegin____________________________________________________________________________________________________-->
+                                <!-- style="position: absolute;z-index: 1000000;" -->
+                                <input name='kinds' class="kinds" list="kinds" placeholder="选择类别">
+                                <datalist id="kinds">
+                                    <option value="图书">
+                                    <option value="电影">
+                                    <option value="音乐">
+                                    <option value="其他">
+                                </datalist>
+                            </div>
+                        </div>
+                        <!--addend____________________________________________________________________________________________________-->
+                        <!-- <textarea name="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea> -->
+                        <br>
+                        <input type="submit" class="btn" value="发送">
+                        {% if success_msg %}
+                        <label style="color: green">{{ success_msg }}</label>
+                        {% elif success_msg %}
+                        <label style="color: red">{{ error_msg }}</label>
+                        {% endif %}
+                        <!--添加-->
+                    </form>
+                </div>
+            </div>
+            <div class="cpy-right text-left">
+                <p>Copyright &copy; 2019.Company name All rights reserved.
+                </p>
+            </div>
+        </section>
+        <!-- //contact -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

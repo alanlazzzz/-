@@ -1,0 +1,166 @@
+*{
+    margin:0px;
+    border:0px;
+    padding:0px;
+}
+.butt:hover {
+    height: 30px;
+    width: 200px;
+    background-color: rgb(251, 131, 55);
+    color: #fff;
+    font-size: 12;
+    font-weight: bold;
+    font-family: arial;
+    border-radius: 10px;
+    line-height: 30px;
+    text-decoration: none;
+}
+
+.butt {
+    position: relative;
+    height: 30px;
+    width: 200px;
+    background-color: #ffffff;
+    color: #000;
+    font-size: 12;
+    font-weight: bold;
+    font-family: arial;
+    border-radius: 10px;
+    border-width: 0px;
+    line-height: 30px;
+    text-decoration: none;
+    left: 50%;
+    margin-left: -100px;
+
+}
+
+.login {
+    background-color: rgba(255, 255, 255, 0.151);
+    position: relative;
+    width: 200px;
+    height: 30px;
+    border-width: 0px;
+    left: 50%;
+    margin-left: -100px;
+    margin-top: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 20px;
+    padding-left: 15px;
+}
+
+#login_box {
+    position: absolute;
+    border-style: solid;
+    background-color: rgba(49, 47, 47, 0.151);
+    width: 350px;
+    height: 400px;
+    left: 50%;
+    top: 50%;
+    margin-top: -200px;
+    margin-left: -175px;
+    z-index: 0;
+
+}
+
+.butt2 {
+    width: 30px;
+    color: #f40;
+    position: relative;
+    left: 50%;
+    margin-left: -30px;
+
+}
+
+.button3 {
+    width: 40px;
+    position: relative;
+    left: 50%;
+    margin-left: -20px;
+    
+}
+
+#button3 {
+    width: 100px;
+    position: relative;
+    left: 50%;
+    margin-left: -90px;
+    padding:10px;
+}
+
+
+
+.flag {
+   
+    top:10px;
+    left:10px;
+    text-decoration: none;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 30px;
+    display: inline-block;
+}
+
+.flag1 {
+   position: absolute;
+   top:10px;
+   left:10px;
+   text-decoration: none;
+   color: #fff;
+   font-family: Arial, Helvetica, sans-serif;
+   font-weight: 900;
+   font-size: 30px;
+   display: inline-block;
+}
+.flag:hover {
+    text-decoration: none;
+    color: rgb(167, 161, 161);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    display: inline-block;
+}
+
+#links {
+    position: absolute;
+    bottom: 30px;
+    width: 100px;
+    height: 50px;
+    left: 5%;
+}
+#Dao{
+    position: absolute;
+    top:0px;
+    right:5px;
+    position: absolute;
+    top:10px;
+    right:10px;
+}
+#Dao .flag{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    font-size: 16px;
+    display: inline-block;
+}
+#Dao .flag:hover{
+    text-decoration: none;
+    color: rgb(167, 161, 161);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    display: inline-block;
+}
+.dao{
+    
+    padding:5px;
+    width: 30px;
+    height: 24px;
+    background-color: rgba(189, 79, 35, 0.664);
+    border-radius: 10px;
+}
+a.flag{
+    line-height: 24px;
+}

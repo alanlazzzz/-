@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/register_style.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.cookie.js' %}"></script>
+    <style type="text/css">
+        #web_bg {
+            background-image: url("{% static 'imgs/login.jpg' %}");
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            min-width: 1000px;
+            z-index: -10;
+            zoom: 1;
+            background-color: #fff;
+            background-repeat: no-repeat;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -o-background-size: cover;
+            background-position: center 0;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#username').blur(function(){
+                account=$('#username').val();
+                if(account){
+                    $.ajax({
+                        async: true,
+                        url: '/app01/ajax/uniqueAccount/'+account,
+                        type: 'post',
+                        headers: {'X-CSRFToken': $.cookie('csrftoken')},
+                        success: function(flag){
+                            if(flag=='0'){
+                                $('#msg1').html('<font color=green>可用</font>');
+                            } else {
+                                $('#msg1').html('<font color=red>不可用</font>');
+                            }
+                        }
+                    });
+                }
+            });
+            $('#pwd2').blur(function(){
+                var pwd1=$('#pwd1').val();
+                var pwd2=$('#pwd2').val();
+                if(pwd1 && pwd2 && pwd1!==pwd2){
+                    $('#pwd1').val('');
+                    $('#pwd2').val(''); 
+                    $('#msg2').html('<font color=red>不一致</font>');
+                }else{
+                    $('#msg2').text('');
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <div id="ttl">
+        <span id="tit">R</span>
+        <span id="register">egister</span><br>
+        <br><br>
+    </div>
+    <div id="reg">
+        <form action="/register/" method="POST" name="form1" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div id='box'>
+                <div class="info">
+                    <span class="item" style="font-weight:900">登陆账号:</span>
+                    <input class='input' id="username" type="text" name="account" placeholder="请输入邮箱/电话/" required>
+                    <span id="msg1"></span><br><br>
+                </div>
+                <div class="info">
+                    <span class="item" style="font-weight:900">登陆密码:</span>
+                    <input class='input' type="password" id="pwd1" name="passwd" placeholder="请输入不少于6位的密码" required><br><br>
+                </div>
+                <div class="info">
+                    <span class="item" style="font-weight:900">确认密码:</span>
+                    <input class='input' type="password" id="pwd2" name="vertipasswd" placeholder="请重复输入密码" required>
+                    <span id="msg2"></span><br><br>
+                </div>
+                <div class="info">
+                    <span class="item" style="font-weight:900">用户昵称:</span>
+                    <input class='input' type="text" name="nickname" placeholder="请输入用户昵称" required><br><br>
+                </div>
+                <div class="info">
+                    <span class="sex" style="font-weight:900">用户性别:</span>
+                    <input type="radio" name="sex" value="male" checked>男
+                    <input type="radio" name="sex" value="female">女<br><br>
+                </div>
+                <div class="info">
+                    <span class="item" style="font-weight:900">出生日期:</span>
+                    <input class='input' type="text" name="year" placeholder="年" style="width: 50px; margin-right: 5px;" required>
+                    <input class='input' type="text" name="month" placeholder="月" style="width: 30px; margin-right: 5px;" required>
+                    <input class='input' type="text" name="day" placeholder="日" style="width: 30px;" required><br><br>
+                </div>
+                <div class="info">
+                    <span class="item" style="font-weight:900">所在地点:</span>
+                    <input class='input' type="text" name="location" placeholder="请输入您的所在地" required><br><br>
+                    
+                            
+                    </select>
+                </div>
+                
+                <button type="submit" id='butt_submit' style="margin-bottom: 5px;">注册</button>
+                <br>
+                <a style="width:50px;left:50%;margin-left:170px; color: white;text-decoration: none; "
+                    href="/login/">返回登陆</a>
+            </div>
+        </form>
+        <p style="text-align: center; color: white;">{{ msg }}</p>
+    </div>
+
+    <div id='web_bg'></div>
+</body>
+
+</html>

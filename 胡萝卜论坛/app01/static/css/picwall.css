@@ -1,0 +1,40 @@
+.picwall-info-box {
+    overflow: hidden;
+    text-align: center;
+}
+
+.picwall-info {
+    max-width: 500px;
+    max-height: 500px;
+    width: auto;
+    margin: auto;
+}
+
+.picwall-fontsize {
+    font-size: 25px;
+}
+.masonry { 
+      column-count: 2;
+      column-gap: 20px;
+      padding: 10px;
+    }
+.pic {
+    padding: 15px;
+    border: solid 2px #eeeeee;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    cursor: pointer;
+  }
+.picwall-show {
+    width: 100%;
+    margin-top:10px;
+  }
+
+.picwall-text {
+    text-align: center;
+}
+
+.picwall-info {
+    max-width: 500px;
+}
+

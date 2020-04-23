@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset=" UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% load static %}
+
+  <title>胡萝卜</title>
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/nav.css">
+  <link href="../static/css/styles.css" rel="stylesheet">
+  <link href="../static/css/mislider.css" rel="stylesheet">
+  <link href="../static/css/mislider-skin-cameo.css" rel="stylesheet">
+  <link type="text/css" rel="Stylesheet" href="../static/css/imageflow.css" />
+  <link href="../static/css/footer.css" rel="stylesheet">
+  <script src="{% static 'plugins/editor.md/jquery.cookie.js' %}"></script>
+  <script src="{% static 'plugins/editor.md/jquery.min.js' %}"></script>
+  <script>
+    $(document).ready(function () {
+      // $("#butt").click(function () {
+      $.ajax({
+        async: true,
+        url: "/showArticle/" + "音乐",
+        type: 'get',
+        // headers: { 'X-CSRFToken': $.cookie('csrftoken') },
+        success: function (data) {
+          $('#md_show').append(data);
+        }
+      });
+      // });
+
+    });
+  </script>
+  <style>
+    .img-item {
+      position: absolute;
+      width: 216px;
+      height: 60%;
+      left: 75%;
+      margin-left: -50px;
+      background-color: rgba(31, 20, 20, 0);
+      transition: all 1.5s;
+      top: 17px;
+      /*设置子元素在3D空间中呈现*/
+      transform-style: preserve-3d;
+    }
+
+    /*让图片可以构成一个有四个面的长方体 start*/
+    .img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background-size: cover;
+    }
+
+    .img:nth-child(1) {
+      background: url("{% static 'imgs/music/a.jpg' %}") no-repeat;
+      transform: rotateX(0deg) translateZ(150px);
+    }
+
+    .img:nth-child(2) {
+      background: url("{% static 'imgs/music/b.jpg' %}") no-repeat;
+      transform: rotateX(-90deg) translateZ(150px);
+    }
+
+    .img:nth-child(3) {
+      background: url("{% static 'imgs/music/c.jpeg' %}") no-repeat;
+      transform: rotateX(-180deg) translateZ(150px);
+    }
+
+    .img:nth-child(4) {
+      background: url("{% static 'imgs/music/d.jpg' %}") no-repeat;
+      transform: rotateX(-270deg) translateZ(150px);
+    }
+
+    /*让图片可以构成一个有四个面的长方体 end*/
+    .btns {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      height: 70px;
+      margin-top: -35px;
+    }
+
+    .prev,
+    .next {
+      width: 70px;
+      height: 70px;
+      line-height: 70px;
+      text-align: center;
+      background-color: rgba(75, 175, 160, 0.555);
+      color: #fff;
+      font-size: 30px;
+      cursor: pointer;
+      position: absolute;
+      top: -220px;
+    }
+
+    .prev {
+      left: 0;
+    }
+
+    .next {
+      right: 0;
+    }
+
+    hr.style {
+      width: 80%;
+      margin: 0 auto;
+      border: 0;
+      height: 4px;
+      background-image: linear-gradient(to right, rgba(209, 250, 241, 0), rgba(164, 252, 230, 0.719), rgba(93, 247, 195, 0));
+    }
+
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.849);
+      transition: 0.3s;
+      width: 100%;
+      border-radius: 2%;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(213, 248, 242, 0.74);
+    }
+
+    /* 评论区标题和作者 */
+    #comment-author-style {
+      text-decoration: none;
+      color: black;
+      margin-left:10px;
+      background-color: rgba(255, 255, 255, 0.4);
+
+    }
+
+    #comment-author-style:hover,
+    #comment-author-style:active {
+      color: whitesmoke;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    #comment-title-style {
+      line-height: 16px;
+      padding: 3px;
+      border-radius: 3px;
+      text-decoration: none;
+      color: #5a5a5a;
+      font-weight: bold;
+      /* background-color: rgb(0, 0, 0); */
+    }
+
+    #comment-title-style:hover,
+    #comment-title-style:active {
+      padding: 3px;
+      border-radius: 3px;
+      font-size:18px;
+      color: rgb(0, 0, 0);
+      /* background-color:rgb(255, 255, 255);  */
+    }
+
+    #comment-box-style {
+      padding: 10px;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div
+    style='background-image: url("{% static 'imgs/music/bk.jpg' %}");
+              position:fixed;top: 0;left: 0;width:100%;height:100%;min-width: 1000px;z-index:-10;zoom: 1;background-color: #fff;
+              background-repeat: no-repeat;background-size: cover;-webkit-background-size: cover;-o-background-size: cover;background-position: center 0;'>
+  </div>
+  {% include 'navbar.html' %}
+
+
+  <div class="slider-outer" id="j_silder_outer">
+    <div class="img-item">
+      <div class="img"></div>
+      <div class="img"></div>
+      <div class="img"></div>
+      <div class="img"></div>
+    </div>
+    <div class="img-item">
+      <div class="img"></div>
+      <div class="img"></div>
+      <div class="img"></div>
+      <div class="img"></div>
+    </div>
+    <div class="img-item">
+      <div class="img"></div>
+      <div class="img"></div>
+      <div class="img"></div>
+      <div class="img"></div>
+    </div>
+    <div class="img-item">
+      <div class="img"></div>
+      <div class="img"></div>
+      <div class="img"></div>
+      <div class="img"></div>
+    </div>
+    <div class="img-item">
+      <div class="img"></div>
+      <div class="img"></div>
+      <div class="img"></div>
+      <div class="img"></div>
+    </div>
+    <div class="btns" data-num="0">
+      <div class="prev">
+        <</div> <div class="next">>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div style="background-color: rgba(255, 255, 255, 0.37); height:500px;"></div>
+  <div
+    style="background-color: rgba(255, 255, 255, 0 ); height:111px;font-size:50px;padding-left: 44.5%;padding-top: 20px; color: lightcyan">
+    最近在听</div>
+  <hr class="style">
+  <div class="wrapper">
+    <figure>
+      <div class="mis-stage" style="background-color: rgba(255, 255, 255, 0.37)">
+
+        <ol class="mis-slider" style="background-color: rgba(75, 175, 160, 0.555);">
+          <!-- The slider element - the class is optional -->
+          <li class="mis-slide">
+            <!-- A slide element - the class is optional -->
+            <a href="http://127.0.0.1:8000/m1" class="mis-container">
+              <!-- A slide container - this element is optional, if absent the plugin adds it automatically -->
+              <figure>
+                <!-- Slide content - whatever you want -->
+                <img src="../static/imgs/music/zj01.jpg">
+                <figcaption style="font-size:30px;color: lightcyan">木偶人</figcaption>
+              </figure>
+            </a>
+          </li>
+          <li class="mis-slide">
+            <a href="http://127.0.0.1:8000/m2" class="mis-container">
+              <figure>
+                <img src="../static/imgs/music/zj02.jpg">
+                <figcaption style="font-size:30px;color: lightcyan ">来自天堂的魔鬼</figcaption>
+              </figure>
+            </a>
+          </li>
+          <li class="mis-slide">
+            <a href="http://127.0.0.1:8000/m3" class="mis-container">
+              <figure>
+                <img src="../static/imgs/music/zj03.jpg">
+                <figcaption style="font-size:30px;color: lightcyan ">你的酒馆对我打了烊</figcaption>
+              </figure>
+            </a>
+          </li>
+          <li class="mis-slide">
+            <a href="http://127.0.0.1:8000/m4" class="mis-container">
+              <figure>
+                <img src="../static/imgs/music/zj04.jpg">
+                <figcaption style="font-size:30px;color: lightcyan ">年少有为</figcaption>
+              </figure>
+            </a>
+          </li>
+          <li class="mis-slide">
+            <a href="http://127.0.0.1:8000/m5" class="mis-container">
+              <figure>
+                <img src="../static/imgs/music/zj05.jpg">
+                <figcaption style="font-size:20px;color: lightcyan ">You Need To Calm Down</figcaption>
+
+              </figure>
+            </a>
+          </li>
+          <li class="mis-slide">
+            <a href="http://127.0.0.1:8000/m6" class="mis-container">
+              <figure>
+                <img src="../static/imgs/music/zj06.jpg">
+                <figcaption style="font-size:30px;color: lightcyan ">晚婚</figcaption>
+              </figure>
+            </a>
+          </li>
+          <li class="mis-slide">
+            <a href="http://127.0.0.1:8000/m7" class="mis-container">
+              <figure>
+                <img src="../static/imgs/music/zj07.jpg">
+                <figcaption style="font-size:30px;color: lightcyan ">绿色</figcaption>
+              </figure>
+            </a>
+          </li>
+        </ol>
+    </figure>
+  </div>
+  <script src="../static/js/lib/modernizr/modernizr-custom.js"></script>
+  <script src="../static/js/lib/jquery/jquery.js"></script>
+  <script src="../static/js/mislider.js"></script>
+  <script>
+    jQuery(function ($) {
+      var slider = $('.mis-stage').miSlider({
+        //  The height of the stage in px. Options: false or positive integer. false = height is calculated using maximum slide heights. Default: false
+        stageHeight: 380,
+        //  Number of slides visible at one time. Options: false or positive integer. false = Fit as many as possible.  Default: 1
+        slidesOnStage: false,
+        //  The location of the current slide on the stage. Options: 'left', 'right', 'center'. Defualt: 'left'
+        slidePosition: 'center',
+        //  The slide to start on. Options: 'beg', 'mid', 'end' or slide number starting at 1 - '1','2','3', etc. Defualt: 'beg'
+        slideStart: 'mid',
+        //  The relative percentage scaling factor of the current slide - other slides are scaled down. Options: positive number 100 or higher. 100 = No scaling. Defualt: 100
+        slideScaling: 150,
+        //  The vertical offset of the slide center as a percentage of slide height. Options:  positive or negative number. Neg value = up. Pos value = down. 0 = No offset. Default: 0
+        offsetV: -5,
+        //  Center slide contents vertically - Boolean. Default: false
+        centerV: true,
+        //  Opacity of the prev and next button navigation when not transitioning. Options: Number between 0 and 1. 0 (transparent) - 1 (opaque). Default: .5
+        navButtonsOpacity: 1
+      });
+    });
+  </script>
+  </div>
+  <hr class="style">
+  <div
+    style="background-color: rgba(255, 255, 255, 0); height: 111px;font-size:50px;padding-left: 44.5%;padding-top: 20px; color: lightcyan">
+    巅峰歌榜</div>
+  <hr class="style">
+  <div id="LoopDiv">
+    <input id="S_Num" type="hidden" value="8" />
+    <div id="starsIF" class="imageflow" style="background-color:rgba(255, 255, 255, 0.37) ">
+      <img src="../static/imgs/music/phb3.png"
+        longdesc="https://y.qq.com/n/yqq/toplist/4.html#stat=y_new.index.toplist.detail.4" width="27" height="30" />
+      <img src="../static/imgs/music/phb4.png"
+        longdesc="https://y.qq.com/n/yqq/toplist/26.html#stat=y_new.index.toplist.detail.26" width="27" height="30" />
+      <img src="../static/imgs/music/phb5.png"
+        longdesc="https://y.qq.com/n/yqq/toplist/27.html#stat=y_new.index.toplist.detail.27" width="27" height="30" />
+      <img src="../static/imgs/music/phb1.png"
+        longdesc="https://y.qq.com/n/yqq/toplist/16.html#stat=y_new.index.toplist.detail.16" width="27" height="30" />
+      <img src="../static/imgs/music/phb2.png"
+        longdesc="https://y.qq.com/n/yqq/toplist/3.html#stat=y_new.index.toplist.detail.3" width="27" height="30" />
+      <img src="../static/imgs/music/phb3.png"
+        longdesc="https://y.qq.com/n/yqq/toplist/4.html#stat=y_new.index.toplist.detail.4" width="27" height="30" />
+      <img src="../static/imgs/music/phb4.png"
+        longdesc="https://y.qq.com/n/yqq/toplist/26.html#stat=y_new.index.toplist.detail.26" width="27" height="30" />
+      <img src="../static/imgs/music/phb5.png"
+        longdesc="https://y.qq.com/n/yqq/toplist/27.html#stat=y_new.index.toplist.detail.27" width="27" height="30" />
+      <img src="../static/imgs/music/phb.png " longdesc="127.0.0.1:8000/music/" width="27" height="30" />
+      <img src="../static/imgs/music/phb1.png"
+        longdesc="https://y.qq.com/n/yqq/toplist/16.html#stat=y_new.index.toplist.detail.16" width="27" height="30" />
+      <img src="../static/imgs/music/phb2.png"
+        longdesc="https://y.qq.com/n/yqq/toplist/3.html#stat=y_new.index.toplist.detail.3" width="27" height="30" />
+      <img src="../static/imgs/music/phb3.png"
+        longdesc="https://y.qq.com/n/yqq/toplist/4.html#stat=y_new.index.toplist.detail.4" width="27" height="30" />
+      <img src="../static/imgs/music/phb4.png"
+        longdesc="https://y.qq.com/n/yqq/toplist/26.html#stat=y_new.index.toplist.detail.26" width="27" height="30" />
+      <img src="../static/imgs/music/phb5.png"
+        longdesc="https://y.qq.com/n/yqq/toplist/27.html#stat=y_new.index.toplist.detail.27" width="27" height="30" />
+      <img src="../static/imgs/music/phb1.png"
+        longdesc="https://y.qq.com/n/yqq/toplist/16.html#stat=y_new.index.toplist.detail.16" width="27" height="30" />
+      <img src="../static/imgs/music/phb2.png"
+        longdesc="https://y.qq.com/n/yqq/toplist/3.html#stat=y_new.index.toplist.detail.3" width="27" height="30" />
+    </div>
+    <script type="text/javascript" src="../static/js/jquery.js"></script>
+    <script type="text/javascript" src="../static/js/imageflow.js"></script>
+  </div>
+  <hr class="style">
+  <div
+    style="background-color: rgba(255, 255, 255, 0); height:100px;font-size:50px;padding-left: 44.5%;padding-top: 30px; color: lightcyan">
+    热门歌曲</div>
+  <div class="btn-group" style="width: 100%; position: relative;text-align: center;padding-top: 25px;">
+    <button
+      style="width: 7%;height: 40px;font-size:20px;background-color: rgba(212, 250, 247, 0.555);border-radius: 5%;border:none;text-align: center;"
+      onclick="ch('a')">为你推荐</button>
+    <button
+      style="width: 7%;height: 40px;font-size:20px;background-color: rgba(212, 250, 247, 0.555);border-radius: 5%;border:none;text-align: center;"
+      onclick="ch('b')">最多人听</button>
+    <button
+      style="width: 7%;height: 40px;font-size:20px;background-color: rgba(212, 250, 247, 0.555);border-radius: 5%;border:none;text-align: center;"
+      onclick="ch('c')">新歌首发</button>
+  </div>
+  <hr class="style">
+  <div style="height:50px; background-color:rgba(255, 255, 255, 0)"></div>
+  <div>
+    <div id="container1" style="position: relative; ">
+      <div style="position: relative;">
+        <div class="cont" style="position: relative; left: 60px;">
+          <img src="../static/imgs/music/zj01.jpg" width="150px" ; height="150px">
+          <span> 薛之谦-木偶人 </span>
+          <audio src="../static/wav/1.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+
+        <div class="cont" style="position: absolute; left: 660px; top:0;">
+          <img src="../static/imgs/music/zj02.jpg" width="150px" ; height="150px">
+          <span> 来自天堂的魔鬼 </span>
+          <audio src="../static/wav/2.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+
+        <div class="cont" style="position: absolute; left: 1260px;top:0;">
+          <img src="../static/imgs/music/zj03.jpg" width="150px" ; height="150px">
+          <span>你的酒馆对我打了烊</span>
+          <audio src="../static/wav/3.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+      </div>
+
+      <div style="position: relative;margin-top:1.5%">
+        <div class="cont" style="position: relative; left: 60px;">
+          <img src="../static/imgs/music/zj04.jpg" width="150px" ; height="150px">
+          <span> 李荣浩-年少有为 </span>
+          <audio src="../static/wav/4.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+
+        <div class="cont" style="position: absolute; left: 660px; top:0;">
+          <img src="../static/imgs/music/zj05.jpg" width="150px" ; height="150px">
+          <span>YouNeedToCalmDown </span>
+          <audio src="../static/wav/5.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+
+        <div class="cont" style="position: absolute; left: 1260px;top:0;">
+          <img src="../static/imgs/music/zj06.jpg" width="150px" ; height="150px">
+          <span> 隔壁老樊-晚婚 </span>
+          <audio src="../static/wav/6.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+      </div>
+
+      <div style="position: relative;margin-top:1.5%">
+        <div class="cont" style="position: relative; left: 60px;">
+          <img src="../static/imgs/music/zj07.jpg" width="150px" ; height="150px">
+          <span> 陈雪凝-绿色 </span>
+          <audio src="../static/wav/7.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+
+        <div class="cont" style="position: absolute; left: 660px; top:0;">
+          <img src="../static/imgs/music/zj08.jpg" width="150px" ; height="150px">
+          <span> 王贰浪-像鱼 </span>
+          <audio src="../static/wav/8.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+
+        <div class="cont" style="position: absolute; left: 1260px;top:0;">
+          <img src="../static/imgs/music/zj09.jpg" width="150px" ; height="150px">
+          <span> 孤独的人在哪里</span>
+          <audio src="../static/wav/9.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+      </div>
+    </div>
+
+    <div id="container2" style="position: relative; display:none;">
+      <div style="position: relative;">
+        <div class="cont" style="position: relative; left: 60px;">
+          <img src="../static/imgs/music/dd.jpg" width="150px" ; height="150px">
+          <span> 金志文-剥落的时间 </span>
+          <audio src="../static/wav/7.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+
+        <div class="cont" style="position: absolute; left: 660px; top:0;">
+          <img src="../static/imgs/music/qq.jpg" width="150px" ; height="150px">
+          <span> 焦迈奇-我的名字 </span>
+          <audio src="../static/wav/1.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+
+        <div class="cont" style="position: absolute; left: 1260px;top:0;">
+          <img src="../static/imgs/music/ww.jpg" width="150px" ; height="150px">
+          <span> 陈粒-多多留意 </span>
+          <audio src="../static/wav/3.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+      </div>
+
+      <div style="position: relative;margin-top:1.5%">
+        <div class="cont" style="position: relative; left: 60px;">
+          <img src="../static/imgs/music/ee.jpg" width="150px" ; height="150px">
+          <span> 吴亦凡-大碗宽面 </span>
+          <audio src="../static/wav/5.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+
+        <div class="cont" style="position: absolute; left: 660px; top:0;">
+          <img src="../static/imgs/music/zj06.jpeg" width="150px" ; height="150px">
+          <span> FeintVeela-Vagrant </span>
+          <audio src="../static/wav/FeintVeela - Vagrant [mqms].mp3" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+
+        <div class="cont" style="position: absolute; left: 1260px;top:0;">
+          <img src="../static/imgs/music/tt.jpg" width="150px" ; height="150px">
+          <span> OwlCity-Blues </span>
+          <audio src="../static/wav/9.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+      </div>
+
+      <div style="position: relative;margin-top:1.5%">
+        <div class="cont" style="position: relative; left: 60px;">
+          <img src="../static/imgs/music/yy.jpg" width="150px" ; height="150px">
+          <span> ShawnMedes-Señorita </span>
+          <audio src="../static/wav/2.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+
+        <div class="cont" style="position: absolute; left: 660px; top:0;">
+          <img src="../static/imgs/music/zj04.jpeg" width="150px" ; height="150px">
+          <span> Owakri-Uppo </span>
+          <audio src="../static/wav/4.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+
+        <div class="cont" style="position: absolute; left: 1260px;top:0;">
+          <img src="../static/imgs/music/ii.jpg" width="150px" ; height="150px">
+          <span> 김청하-Chica </span>
+          <audio src="../static/wav/6.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+      </div>
+    </div>
+
+    <div id="container3" style="position: relative; display:none;">
+      <div style="position: relative;">
+        <div class="cont" style="position: relative; left: 60px;">
+          <img src="../static/imgs/music/oo.jpg" width="150px" ; height="150px">
+          <span> RADWIMPS-前前前世 </span>
+          <audio src="../static/wav/8.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+
+        <div class="cont" style="position: absolute; left: 660px; top:0;">
+          <img src="../static/imgs/music/zj01.jpeg" width="150px" ; height="150px">
+          <span> OWakri-Mirage</span>
+          <audio src="../static/wav/7.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+
+        <div class="cont" style="position: absolute; left: 1260px;top:0;">
+          <img src="../static/imgs/music/pp.jpg" width="150px" ; height="150px">
+          <span> 冯希瑶-尘埃 (Live) </span>
+          <audio src="../static/wav/6.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+      </div>
+
+      <div style="position: relative;margin-top:1.5%">
+        <div class="cont" style="position: relative; left: 60px;">
+          <img src="../static/imgs/music/rr.jpg" width="150px" ; height="150px">
+          <span> 简弘亦-说好的幸福 </span>
+          <audio src="../static/wav/5.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+
+        <div class="cont" style="position: absolute; left: 660px; top:0;">
+          <img src="../static/imgs/music/uu.jpg" width="150px" ; height="150px">
+          <span> NeverReallyOver </span>
+          <audio src="../static/wav/4.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+
+        <div class="cont" style="position: absolute; left: 1260px;top:0;">
+          <img src="../static/imgs/music/zj03.png" width="150px" ; height="150px">
+          <span> DJokwari-Sakura </span>
+          <audio src="../static/wav/3.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+      </div>
+
+      <div style="position: relative;margin-top:1.5%">
+        <div class="cont" style="position: relative; left: 60px;">
+          <img src="../static/imgs/music/cc.jpg" width="150px" ; height="150px">
+          <span> 霍尊-庄周 </span>
+          <audio src="../static/wav/2.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+
+        <div class="cont" style="position: absolute; left: 660px; top:0;">
+          <img src="../static/imgs/music/xx.jpg" width="150px" ; height="150px">
+          <span> 王源-滚烫的青春 </span>
+          <audio src="../static/wav/1.m4a" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+
+        <div class="cont" style="position: absolute; left: 1260px;top:0;">
+          <img src="../static/imgs/music/zz.jpg" width="150px" ; height="150px">
+          <span> いつも何度でも </span>
+          <audio src="../static/wav/FeintVeela - Vagrant [mqms].mp3" controls="controls"
+            style="width: 300px; position: absolute; bottom:15px;left:200px;"></audio>
+        </div>
+      </div>
+    </div>
+    <div style="height: 50px"></div>
+    <hr class="style">
+    <div>
+      <div id="comment" class="container" style="position: relative; background-color: rgba(222, 243, 239, 0.795);">
+        <div class="card" style="margin: 1% 0.001%;text-align:center;overflow-x:hidden;word-break:break-all;">
+          <div class="comment" id="md_show">
+            <h3>评论区</h3>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="style">
+  </div>
+  <div style="text-align: center;word-spacing: 50px;">
+    <h3 style="font: size 20px;color: lightcyan">合作网站跳转</h3>
+    <a href="https://y.qq.com/">
+      <img src="../static/imgs/music/9.jpg" width="50" alt="QQ音乐" /></a>
+    <a href="https://music.163.com/">
+      <img src="../static/imgs/music/10.jpg" width="50" alt="网易云音乐" /></a>
+    <a href="http://www.kugou.com/">
+      <img src="../static/imgs/music/11.jpg" width="50" alt="酷狗音乐" /></a>
+    <a href="http://www.kuwo.cn/">
+      <img src="../static/imgs/music/12.png" width="50" alt="酷我音乐" /></a>
+    <a href="https://www.xiami.com/">
+      <img src="../static/imgs/music/13.png" width="50" alt="虾米音乐" /></a>
+    <br><br>
+
+    <hr class="style">
+
+    <div style="text-align: center;word-spacing: 50px;font-size:30px;color: lightcyan">
+      <div class="h_footer" style="position:relative">
+        <div class="footer_info" style="position:relative">
+          <div class="footer_infowrap">
+            <div class="b_logo">
+              <img src="../static/imgs/music/icon.png" width="105" height="105" alt="胡萝卜" title="胡萝卜">
+            </div>
+            <div class="h_wx fl">
+              <ul class="h_wxwrap">
+                <li class="h_wb">
+                  <img src="../static/imgs/music/icon.png" width="65" height="65" alt="微博" title="微博">
+                </li>
+                <li>
+                  <img src="../static/imgs/music/icon.png" width="65" height="65" alt="微信" title="微信">
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="f_wz">
+          <a href="#">关于我们</a>
+          <a href="#">加入我们</a>
+          <a href="#">法律条款</a>
+          <a href="#">隐私政策</a>
+          <p>Carrot</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <script src="../static/js/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/holder.min.js"></script>
+    <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../static/js/jquery-ui-1.10.4.min.js"></script>
+    <script src="../static/js/responsive-layered-slider.js"></script>
+    <script src="../static/js/jquery-1.11.3.min.js"></script>
+    <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" preserveAspectRatio="none"
+      style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;">
+      <defs>
+        <style type="text/css"></style>
+      </defs><text x="0" y="25"
+        style="font-weight:bold;font-size:25pt;font-family:Arial, Helvetica, Open Sans, sans-serif">500x500</text>
+    </svg>
+    <script src="../static/js/ie-emulation-modes-warning.js"></script>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+      $(function () {
+        var num = 0;
+        $("#j_silder_outer .img-item").each(function (index, el) {
+          $(this).css({
+            "left": $(this).width() * index + 450 + "px",
+            /*让每个img-item延时一定时间执行动画*/
+            "transitionDelay": index * 0.3 + "s"
+          });
+          $(this).find(".img").css({
+            "backgroundPosition": -$(this).width() * index + "px"
+          });;
+        });
+
+        $(".prev").on("click", function () {
+          $("#j_silder_outer .img-item").css("transform", "rotateX(" + (++num * 90) + "deg)");
+        });
+
+        $(".next").on("click", function () {
+          $("#j_silder_outer .img-item").css("transform", "rotateX(" + (--num * 90) + "deg)");
+        });
+
+        var timejg = 4000;//轮播间隔时间
+        var time = setInterval(move, timejg);
+        function move() {
+          $("#j_silder_outer .img-item").css("transform", "rotateX(" + (--num * 90) + "deg)");
+        }
+        $('.slider-outer').hover(function () {
+          clearInterval(time);
+        }, function () {
+          time = setInterval(move, timejg);
+        });
+
+
+      })
+      function ch(tag) {
+        var a = document.getElementById("container1");
+        var b = document.getElementById("container2");
+        var c = document.getElementById("container3");
+        if (tag == 'a') {
+          a.style.display = "block";
+          b.style.display = "none";
+          c.style.display = "none";
+        }
+        else if (tag == 'b') {
+          a.style.display = "none";
+          b.style.display = "block";
+          c.style.display = "none";
+        }
+        else {
+          a.style.display = "none";
+          b.style.display = "none";
+          c.style.display = "block";
+
+        }
+      } x</script>
+
+
+
+</body>
+
+</html>

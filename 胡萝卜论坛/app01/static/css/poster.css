@@ -1,0 +1,82 @@
+/* 海报 CSS
+-------------------------------------------------- */
+img.poster{
+    border-radius: 2%;
+  }
+img.toprating{
+    border-radius: 5px 5px 0 0;
+}
+.pic {
+    position: relative;
+    width: 80%;
+    height: auto;
+}
+div.pic{
+  float: left;
+  margin:1.5% 1.5%;
+}
+
+.pictop {
+  position: relative;
+  width: 340%;
+  height: auto;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    background-color:#E98B2A;
+    overflow: hidden;
+    width: 20%;
+    height:0;
+    transition: .5s ease;
+  }
+
+  .pic:hover .overlay {
+    bottom: 0;
+    height: 100%;
+  }
+
+  .pictop:hover .overlay {
+    bottom: 0;
+    height: 100%;
+    border-radius: 2%;
+    background-size: cover;
+    background-image:url(https://img1.doubanio.com/view/photo/l/public/p2178902388.jpg);
+    background-color: transparent;
+  }
+  .image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .imagetop {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 2%;
+  }
+  .text {
+    white-space: nowrap; 
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+  .text h4{
+    font-size:16px;
+  }
+  .text p{
+    font-size: 1.5%;
+    word-break: break-all;
+  }
+  hr.hrtop{
+    color: black;
+    height: 1px;
+  }

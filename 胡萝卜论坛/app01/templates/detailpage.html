@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)https://v3.bootcss.com/examples/carousel/ -->
+<html lang="en">
+
+<head>
+  <meta charset=" UTF-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+  <!-- <meta name="description" content="">
+    <meta name="author" content=""> -->
+
+  <!-- 地址栏中网页前端logo -->
+  <link rel="icon" href="../static/imgs/carrot.ico" type='image/x-icon'>
+  <title>胡萝卜</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../static/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+  <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  <script src="../static/js/ie-emulation-modes-warning.js"></script>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <!-- Custom styles for this template -->
+  <link href="../static/css/carousel.css" rel="stylesheet">
+  <link href="../static/css/Nav.css" rel="stylesheet">
+  {% load static %}
+  <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.cookie.js' %}"></script>
+  <script type="text/javascript" src="{% static 'plugins/editor.md/jquery.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'plugins/editor.md/css/editormd.min.css' %}" />
+
+  <script type="text/javascript" src="{% static 'plugins/editor.md/editormd.min.js' %}"></script>
+  <link rel="stylesheet" href="../static/css/card.css">
+
+  <script>
+    $(document).ready(function () {
+      // $("#butt").click(function () {
+      infoid = $('#infoid').text();
+      // alert(infoid)
+      $.ajax({
+        async: true,
+        url: "/detailpage/" + infoid + "/",
+        type: 'get',
+        // headers: { 'X-CSRFToken': $.cookie('csrftoken') },
+        success: function (data) {
+
+          $('#md_show').append(data);
+          // $('html, body').animate({ scrollTop: $('#infoid').offset().top }, 1000);
+        }
+      });
+      // });
+
+    });
+
+  </script>
+  <script type="text/javascript">
+    $(function () {
+      var editor = editormd("editor", {
+        path: "{% static 'plugins/editor.md/lib/' %}",
+        width: "100%",
+        height: "200",
+        markdown: "请在此处使用Markdown语法编写",     // dynamic set Markdown text
+      });
+    });
+  </script>
+  <script>
+    $(document).ready(function () {
+      // $("#butt").click(function () {
+      infoid = $('#infoid').text();
+      $.ajax({
+        async: true,
+        url: "/showComment/" + infoid,
+        type: 'get',
+        // headers: { 'X-CSRFToken': $.cookie('csrftoken') },
+        success: function (data) {
+          $('#commentContent').append(data);
+          // $('html, body').animate({ scrollTop: $('#infoid').offset().top }, 1000);
+
+        }
+      });
+      // });
+
+    });
+  </script>
+  <style>
+    .like {
+      font-size: 66px;
+      /* color: #ccc; */
+      cursor: pointer;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      padding: 20px;
+    }
+
+    .cs {
+      color: #f00;
+    }
+
+
+    #comment-author-style{
+        padding:3px;
+        border-radius:3px;
+        text-decoration: none;
+        font-size:18px;
+        margin-left:-10px;
+        color:#5a5a5a;
+        background-color: rgba(78, 78, 78, 0.3)
+        
+    }
+    #comment-author-style:hover,
+    #comment-author-style:active{
+      padding:3px;
+        border-radius:3px;
+        text-decoration: none;
+        font-size:18px;
+        margin-left:-10px;
+        color:rgba(255, 255, 255, 1);
+        background-color: #5a5a5a
+    }
+    
+  </style>
+
+
+  <script>
+    $(function () {
+      $(".like").click(function () {
+        color1 = document.getElementById("like").style.color;
+
+        strcolor1 = String(color1);
+        infoid = $('#infoid').text();
+        if (strcolor1 == 'rgb(204, 204, 204)') {
+
+          // $(this).toggleClass('cs');
+          document.getElementById("like").style.color = "red";
+          // alert(infoid);
+          // var praisecounr = '1';
+          $.ajax({
+            async: true,
+            url: '/praiscounr/' + infoid + '/',
+            type: 'post',
+            headers: {
+              // 'X-CSRFToken': $.cookie('csrftoken')
+            },
+            success: function (data) {
+
+
+            }
+          });
+
+        }
+      })
+    })
+  </script>
+
+
+
+  <script>
+    $(document).ready(function () {
+      // $("#butt").click(function () {
+      infoid = $('#infoid').text();
+      $.ajax({
+        async: true,
+        url: "/praise_status/" + infoid,
+        type: 'get',
+        // headers: { 'X-CSRFToken': $.cookie('csrftoken') },
+        success: function (data) {
+          if (data == '1') {
+            document.getElementById("like").style.color = "red"
+          }
+          else {
+            document.getElementById("like").style.color = "#ccc"
+
+          }
+          $('html, body').animate({ scrollTop: $('#infoid').offset().top }, 1000);
+        }
+      });
+      // });
+
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+
+
+
+
+<!-- NAVBAR
+================================================== -->
+
+<!-- 左侧导航 -->
+
+<body>
+  <a id='infoid' href="">{{ userdata.infoid }}</a>
+
+  <div id="left-nav">
+    <div>
+      <a class='a-tag' href="#i1">Part1</a>
+    </div>
+    <div>
+      <a class='a-tag' href="#i2">Part2</a>
+    </div>
+    <div>
+      <a class='a-tag' href="#i3">Part3</a>
+    </div>
+    <div>
+      <a class='a-tag' href="#i4">Part4</a>
+    </div>
+    <div>
+      <a class='a-tag' href="#i5">Part5</a>
+    </div>
+    <div>
+      <a class='a-tag' href="#i6">Part6</a>
+    </div>
+    <div>
+      <a class='a-tag' href="#i7">Part7</a>
+    </div>
+    <div>
+      <a class='a-tag' href="#i8">Part8</a>
+    </div>
+    <div>
+      <a class='a-tag' href="#i9">Part9</a>
+    </div>
+    <div>
+      <a class='a-tag' href="#i0">Part0</a>
+    </div>
+
+  </div>
+
+  {% include 'navbar.html' %}
+
+  <!-- </div>
+  </div> -->
+
+
+
+
+  <!-- Marketing messaging and featurettes
+    ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <!-- 控制页面居中 -->
+  <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+
+      <!-- 使并列：控制左右间距-->
+
+
+
+      <!-- 备份点 -->
+      <div style="background-color:whitesmoke ;
+    
+      
+      position:fixed;
+      top: 0;
+      left: 0;
+      width:100%;
+      height:100%;
+      min-width: 1000px;
+      z-index:-10;
+      zoom: 1;
+      background-repeat: no-repeat;
+      background-size: cover;
+      -webkit-background-size: cover;
+      -o-background-size: cover;
+      background-position: center 0;"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- START THE FEATURETTES -->
+      <!-- 控制上下有个间距 还有一条线-->
+
+      <!-- 详情页面的  -->
+
+      <hr class="featurette-divider">
+      <div id="butt" class="row featurette">
+        <!-- 宽度 -->
+        <div style="width:80%;left:10%; background-color:white;" class='picwidth' class="col-md-7 col-md-push-7">
+
+
+          {% if like %}
+          <p class="like" id="like" style="color: red;">&#10084;</p>
+          {% else %}
+          <p class="like" id="like" style="color: #ccc;">&#10084;</p>
+          {% endif %}
+          <p style="padding:50px;" id='md_show' class="lead"></p>
+
+
+
+
+
+
+          <div id="comment" class="container" style="position: relative;left: 0px;width:80%;">
+            <div class="card"
+              style="padding:20px;margin: 5% 3%;overflow-x:hidden;word-break:break-all;margin-left:-10px;">
+              <div id="commentContent" class="comment">
+                <h3>评论区</h3>
+
+
+              </div>
+              <form action="/comment/{{userdata.infoid}}" method="POST" enctype="multipart/form-data">
+                <div id="editor">
+                  {% csrf_token %}
+                  <!-- Tips: Editor.md can auto append a `<textarea>` tag -->
+
+                  <textarea id="markdownsss" name='texts' style="display:none;">### Hello Editor.md !</textarea>
+                </div>
+                <button type="submit">发布</button>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+        <!-- 控制左右宽度 -->
+
+
+      </div>
+
+
+      <hr class="featurette-divider">
+
+      <!-- /END THE FEATURETTES -->
+
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="https://v3.bootcss.com/examples/carousel/#">Back to top</a></p>
+        <p>页脚 <a href="https://v3.bootcss.com/examples/carousel/#">页脚内容y</a> · <a
+            href="https://v3.bootcss.com/examples/carousel/#">页脚内容</a></p>
+
+      </footer>
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../static/js/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../static/js/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" preserveAspectRatio="none"
+      style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;">
+      <defs>
+        <style type="text/css"></style>
+      </defs><text x="0" y="25"
+        style="font-weight:bold;font-size:25pt;font-family:Arial, Helvetica, Open Sans, sans-serif">500x500</text>
+    </svg>
+</body>
+
+</html>

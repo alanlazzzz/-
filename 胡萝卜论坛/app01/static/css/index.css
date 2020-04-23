@@ -1,0 +1,20 @@
+.demo {
+    width: 1260px;
+    margin: 460px auto;
+    border-radius: 100px;
+}
+
+.demo p {
+    padding: 10px 0;
+    position: relative;
+    left: 16px;
+    opacity: 0.5;
+}
+
+body {
+	height: 1000px;
+	width: 2000px;
+	background-size: 100px 96px;
+	margin: 0px auto;
+	background-color: rgb(45, 45, 45);
+}

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)https://v3.bootcss.com/examples/carousel/ -->
+<html lang="en">
+
+<head>
+  <meta charset=" UTF-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+  <!-- <meta name="description" content="">
+    <meta name="author" content=""> -->
+
+  <!-- 地址栏中网页前端logo -->
+  <link rel="icon" href="../static/imgs/carrot.png" type='image/png'>
+  <title>胡萝卜</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../static/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+  <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  <script src="../static/js/ie-emulation-modes-warning.js"></script>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <!-- Custom styles for this template -->
+  <link href="../static/css/carousel.css" rel="stylesheet">
+  <link href="../static/css/nav.css" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/search.css">
+  {% load static %}
+</head>
+<!-- NAVBAR
+================================================== -->
+
+<!-- 左侧导航 -->
+
+<body>
+  
+
+  <div class="navbar-wrapper">
+    <div class="container">
+
+
+      <!-- <nav class="navbar navbar-inverse navbar-static-top"> -->
+        <div class="container">
+          <!-- <div class="navbar-header"> -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+              aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">button</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a id='page-f' class="navbar-brand" href="/home/">
+              <img src="../static/imgs/carrot.png" width="50" height="50" style="display: inline; margin-top: -5px;" >胡萝卜</a>
+
+          <!-- <div id="navbar" class="navbar-collapse collapse"></div> -->
+            <ul class="nav navbar-nav">
+              <li class="active"><a id='index_p' href="/home/">主页</a></li>
+              <!-- 主页导航栏 -->
+              <li><a id='music_p' href="/music/">音乐</a></li>
+              <li><a id='book_p' href="/book/">书籍</a></li>
+              <li><a id='movie_p' href="/movie/">电影</a></li>
+
+            </ul>
+            <!-- 登录注册标题栏 -->
+            <!-- <ul class="nav navbar-nav"> -->
+              <!-- search搜索栏 -->
+          <span>
+            <form action="/search/" id="y1" method='POST'> 
+              {% csrf_token %}
+                <input type="serach" name='ppt' stlye="height=50px" class="search-input" placeholder="       请输入搜索内容" required > 
+                <button style='background-color: transparent; border-width: 0px;' type="submit">
+                  <img src="{% static 'imgs/timg.jpg' %}" alt="123" width=20px height=20px
+                    style="position: relative;left:-25px;z-index: 1;">
+                </button>
+              </form>
+          </span>
+          <!-- search搜索栏结束 -->
+              
+
+            {% if not userdata.tag %}
+            <div class='login-reg'>
+              <span>
+                <a class='login' href="/login/">登录</a> 
+              </span>
+              <span>
+                <a class='register' href="/register/">注册</a>
+              </span>
+            </div>
+            {% else %}
+            <div class='login-reg'>
+                <span>
+                  <!-- 头像和进入个人中心的入口 -->
+                  <a href="/index/" >
+                  <img src="{% static userdata.headimg %}" width="37" height="37" >
+                  </a>
+                  <!-- <a class='login' href="#">个人中心</a>  -->
+                </span>
+                
+                <span>
+                  <a class='logout' href="/logout/" style='right:-15px'>退出</a>
+                </span>
+              </div>
+            {% endif %}
+          
+          </div>
+        </ul>
+
+
+        </div>
+
+
+        </ul>
+    </div>
+  </div>
+  </nav>
+
+  </div>
+
+
+
+  <!-- qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq -->
+  <!-- Carousel
+    ================================================== -->
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+      <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <div class="carousel-inner" role="listbox">
+
+      <!-- active为默认看到的 -->
+      <div class="item active">
+        <img src="../static/imgs/homepage_movie_img.jpg" >
+        <!-- src放图片，alt缺省输入 -->
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>电影</h1>
+
+            <!-- 一个button -->
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="item ">
+        <img class="second-slide" src="../static/imgs/music4.jpg" alt="Second slide">
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>音乐</h1>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <img class="third-slide" src="../static/imgs/1-1P626163122K1.jpg" alt="Third slide">
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>书籍</h1>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 左右换页，但是并没有显？ -->
+    <!-- button，返回 -->
+    <a class="left carousel-control" href="https://v3.bootcss.com/examples/carousel/#myCarousel" role="button"
+      data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="https://v3.bootcss.com/examples/carousel/#myCarousel" role="button"
+      data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div><!-- /.carousel -->
+
+
+  <!-- Marketing messaging and featurettes
+    ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <!-- 控制页面居中 -->
+  <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+
+      <!-- 使并列：控制左右间距-->
+
+
+
+      <!-- 备份点 -->
+      <div id='background'></div>
+
+
+
+
+
+
+
+      <!-- 跳转分页 + 圆形图片链接-->
+      <div class="col-lg-4">
+        <!-- 灰色图片 ，圆形，控制大小-->
+        <a href="/book/">
+          <img class="img-circle"
+            src="../static/imgs/book.jpg"
+            alt="Generic placeholder image" width="140" height="140">
+        </a>
+
+
+      </div><!-- /.col-lg-4 -->
+
+      <div class="col-lg-4">
+        <a href="/music/">
+          <img class="img-circle"
+            src="../static/imgs/music.jpg"
+            alt="Generic placeholder image" width="140" height="140">
+        </a>
+        
+
+
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <a href="/movie/">
+          <img class="img-circle"
+            src="../static/imgs/movie.jpg"
+            alt="Generic placeholder image" width="140" height="140">
+        </a>
+
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+
+
+
+
+
+
+    <!-- START THE FEATURETTES -->
+    <!-- 控制上下有个间距 还有一条线-->
+    <hr  class="featurette-divider">
+    <div style="background-color: rgba(255, 255, 255, 0.795);text-align: center;width: 800px;" class="row featurette">
+
+      <div style="padding: 40px;width:800px;position: relative;left:50%;margin-left:-400px;" class="col-md-7">
+        <h1>人间失格</h1>
+<p><em>宰治的“丑角精神”</em></p>
+<blockquote>
+<p>所谓精神病症患者，可以被视为在争夺自我的战斗中不准备彻底投降的人。——埃里希·弗洛姆</p>
+</blockquote>
+<p><strong>《人间失格》</strong>书成当年，太宰治旋即投水自尽。这部遗作，也因此在太宰的作品之中占有举足轻重的地位，被认为是作家一生遭遇与心路历程的映射。史铁生曾说过：“写作者，未必能塑造出真实的他人，写作者只可能塑造真实的自己。”这话用在太宰治身上可谓恰如其分，纵观他的各部作品中那诸多角色，不啻为他自己的无数分身。而在《人间失格》里，这种自我写照实在过于明显，以至于对太宰治略有了解的读者根本无需分析，就可以看出书中主角“大庭叶藏”其实就是“津岛修治”，亦即作者本人的化身。书中以叶藏独白道出的经历，与作者本人的人生重合度之高，令这部作品也被冠以“自传体小说”之名。鉴于其“遗作”的特殊地位，本书可看作是太宰治本人对自己人生的某种“总结”，窥探其内心世界的<strong>最后机会</strong>。在本书中，作者依旧一如既往地描写了一个被社会排斥的“边缘人”角色的挣扎与沉沦。而若要问本书与太宰其它作品相比最显著的特点，或者<em>“相同之中的些许不同”</em>是什么的话，恐怕只能说，本作是刻画太宰治<strong>“丑角精神”</strong>最深入、最全面也最彻底的一部作品。</p>
+<blockquote>
+<p>所谓“丑角精神”，就是在生活中与他人交往时，一味屈从对方的要求，为取悦他人不惜自己戴上“小丑”的面具，以刻意的出乖卖丑，耍宝搞笑来与他人同一化的行为趋向。</p>
+</blockquote>
+<p>书中主角叶藏，从小时候起就懂得用假装的笑脸博得家人欢心，为讨好父亲而故意索取自己并不喜欢的礼物，学生时期在众人面前的搞笑表演，这些都可说是<em>“丑角精神”</em>的表现。仔细回想的话，也许我们在学生时代乃至当下的生活里，也曾遇到过类似行为的人，甚至我们自己，也曾多少扮演过<em>“丑角”</em>。这种行为背后蕴藏的<strong>心理机制</strong>是什么？一般而言，在过度趋同，即强调<em>“社会人”</em>的同一性的社会中，个体的自我个性会经历<em>“同化”</em>过程，即抹去自我中<strong>过度特异</strong>的部分而使其成为更<em>“适应”</em>社会的存在。鲁迅曾言：<code>“皆灭人之自我，使之混然不敢自别异，泯于大群”</code>，正是此意。</p>
+<blockquote>
+<p>乍看之下，“丑角精神”也是这种同一化的表现，然而其内在却大有不同，因为“丑角”本质上只是一层伪装，是从自我本体中分离出来的“人格面具”。其存在目的，不是消弭自我求得同化，而恰是隐藏那个与众人“相异”的自我。</p>
+</blockquote>
+<p>早在孩提时代，当其他孩子还在对世界予取予求的自我中心化阶段时，<strong>叶藏</strong>（或说太宰）就已经敏感地感知到了自己的与众不同，并对这种可能带来<code>孤立和疏离的差异而深深焦虑不安，充满了对外界和他人的戒惧感</code>。<em>“对于人，我总是恐惧地颤抖”</em>。是什么造成了这种过度的敏感和早熟？是身为贵族的父亲的过度严厉？是因为“纽带”作用的母亲的缺位？还是津岛家淡漠的人情？对此我们无从得知，但其结果却是一目了然的，那就是年幼的太宰就此学会了戴上<em>“丑角”</em>的面具，<code>“将那份忧郁、神经质一股脑地隐藏起来，努力伪装出天真无邪的乐天，逐渐成为一个娱乐他人的怪胎。”</code></p>
+<p>这种伪装一直持续到学生时代的末期，期间虽说有过险些被<strong>揭穿</strong>的经历，但大体还算涉险过关。然而，随着“踏上社会”日子的日益临近，“丑角”面具的崩塌却也难以避免。一方面，“<strong>丑角精神</strong>”虽然是为了求得同一，但却并不是真正改造自我的社会化，而是千方百计的隐藏保护真实的自我。在太宰的内心，虽然时刻因为与他人的不同而感到恐惧，但同时却又执着于这份不同所带来的优越感，无论是<strong>“背负灾祸”、“贵族精神”还是“选民意识”</strong>，都是这种优越感的体现。在《乞丐学生》中，他甚至说出了“只有具备优越感的人才可能扮演丑角”这一明白无误的话语。从这一点上，<strong>太宰治其实就是心理学家弗洛姆所说</strong>:</p>
+<blockquote>
+<p>“在保留自我的斗争中不愿彻底放弃的人”。</p>
+</blockquote>
+<p>可是要取悦一两人还算简单，这伪装要骗过“世人”众目又谈何容易？因此，他始终与这个社会格格不入，反而是反社会的革命团体更能令他安心，“不合法，对我来说有点好玩。说得更明白点，这让我心情大好。世界上所谓的合法，反而都是可怕的。”另一方面，“丑角”的面具虽然与他人建立了看似正常的联系，但这种联系只是建立在伪装的人格之上，其本身也是虚假而脆弱的。这也导致真实的自我从未真正向外界敞开心扉，因此尤为恐惧与他人联系所带来的伤害。虚假的外壳挡住了可能的伤害，但也挡住了温情与关怀，让本体变得愈加怯懦无助。亲情、友情，甚至男女之情，都成了提防戒备的对象。即使与同为孤寂之人的女性共度一夜而带来的幸福感，也会在第二天一早烟消云散，不得不变回那个轻浮的丑角，那个“连幸福都害怕”的懦弱者。因此，</p>
+<blockquote>
+<p>“丑角”看似与外界保持联系，实则与自闭症患者一样，都是将自我隔绝于这个世界，以维护自我完整性的人。因此，这种“丑角精神”的失败是不可避免的</p>
+</blockquote>
+<p><code>无论</code>再怎么努力，叶藏最终仍然成为了一个被社会排斥疏远的“边缘人”：自杀未遂、被包养、酗酒、吸毒、肺结核病……太宰以颓废的行为将自己从这个社会放逐，既然扮演丑角已经难以取悦“世人”，那就干脆主动向边缘滑落，以保全自己心中那份仅剩的骄傲。</p>
+<blockquote>
+<p>叶藏说，他是用“丑角精神”作为对人最后的求爱，可他其实根本不会爱，因为他缺乏袒露自己内心，或是探视他人内心的那点勇气。</p>
+</blockquote>
+<p><em>“他人即地狱”</em>，在他的眼里，人与人之间的相互理解根本就是不可能的。在放浪形骸的日子里，他索性不再寻求人与人的联系，反而不再如履薄冰。可这并不能减轻他对别人的恐惧感，直至良子的出现才令此状况有所改观。良子是一个理想人格的写照，一个“完全信任他人”，“如神般的纯真”的人。这个宛如耶稣基督般的存在，对于无法信任他人的叶藏来说，无疑是整个世界中唯一能够令他安心的治愈之所。太宰在自己的人生中是否遇到过良子的“原型”？是为他殉情而亡的田边，还是曾有夫妻之实的小山，亦或是最终与他共赴黄泉的山崎？也许我们终究无从得知，但这无疑是他的<code>精神救赎</code>。然而，社会的恶意和伤害却打破了他的幻想，良子因为轻信而被无良商人奸污，标志着希望和救赎的破灭，以及主人公的彻底绝望与沉沦。最终，他成了<code>精神病人</code>，<code>疯子</code>，<code>人间失格</code>者（丧失为人的资格者）。这是否也是太宰治本人后半生精神追求的缩影呢？完成本书后的自杀，是否是保全自我，并重新获得世人肯定的唯一途径呢？因为，也唯有在他人的记忆里，“我们所认识的阿叶非常率真机灵，若是不喝酒，不，就算喝了酒，也是个像天神般的大好人呢。”</p>
+<p>太宰治生活的日本，是一个<code>旧道德秩序</code>和<code>集体主义</code>依旧盘根错节的社会，我们并不生活在那样的社会中。然而，今天我们阅读太宰治的作品，却并没有太多隔阂感，反而能够生出一种<code>超越时代的共鸣</code>。这恐怕是因为，</p>
+<blockquote>
+<p>如今的后工业时代，也同样是一个无时无刻不在压抑乃至抹杀个体自我以使其“适应社会”的病态时代，身处其中者若是想要保留心中那个自我，便也一样面临如太宰那般被边缘化和“人间失格”的危险处境。</p>
+</blockquote>
+<p>在这种挣扎之中，我们也许并没有成为大庭叶藏那样的“丑角”，但在内心深处，又何尝没有一个懦弱却又渴望实现的自我？太宰治看似全为自我描写的文字，却唤醒了读者那<code>沉睡而濒临消失</code>的<code>真实</code>灵魂，让我们重新思考自己的精神处境。这，也许就是太宰文学在如今依旧能够虏获读者的原因所在。
+<img style="width:400px;" alt="" src="https://img3.doubanio.com/view/thing_review/l/public/538281.jpg" /></p>
+      </div>
+    </div>
+
+    <hr  class="featurette-divider">
+    <div style="background-color: rgba(255, 255, 255, 0.795);text-align: center;width: 800px;" class="row featurette">
+
+      <div style="padding: 40px;width:800px;position: relative;left:50%;margin-left:-400px;" class="col-md-7">
+        <p><strong>蜘蛛侠（Spider-Man）</strong>一个在全球范围内都家喻户晓的著名超级英雄，事实上的漫威一哥，迎来了他的第七部真人版电影。
+          而这部《英雄远征》，也是系列元素最多，最为精彩纷呈的一部。</p>
+          <blockquote>
+          <p>而这不是一部传统的超级英雄电影，它充满着各式各样的反转。</p>
+          </blockquote>
+          <p>下文全是剧透！介意者千万不要再往下拉了！</p>
+          <p>大家抓紧时间去电影看，越早越好！这部电影某种程度上比《复联4》更怕剧透
+          <img style="width:400px;" alt="" src="https://img3.doubanio.com/view/thing_review/l/public/3012810.jpg" /></p>
+          <p>电影的开头是由一段缅怀逝者bgm的PPT展开。</p>
+          <p>关键来了！我们都知道，钢铁侠，黑寡妇和幻视分别死在了复联4与复联3中。</p>
+          <p>可是！PPT的照片播放告诉我们，那个变老的史蒂夫队长也去世了！</p>
+          <blockquote>
+          <p>我的世界里，再也没有美国队长了。</p>
+          </blockquote>
+          <p><img style="width:400px;" alt="" src="https://img1.doubanio.com/view/thing_review/l/public/3012809.jpg" /></p>
+          <p>两位新闻主持人是《英雄归来》的原班人马。</p>
+          <blockquote>
+          <p>英雄归来/返校日：homecoming
+          英雄远征/离家日：far from home</p>
+          </blockquote>
+          <p>两人提到了一个名为<strong>blip</strong>（闪烁）的概念，对应因响指而突然化灰或复活的人。</p>
+          <p>正如《复联4》的时间线那样，果然整个世界都过了五年，所以五年后的世界里，<code>化灰的人年龄没有变化，而存活的人增长了五岁</code>
+          <img style="width:400px;" alt="" src="https://img3.doubanio.com/view/thing_review/l/public/3012812.jpg" />
+          所以，除了那个新加入的陌生脸男孩外；
+          <strong>蜘蛛侠与他的这几个高中同学，全部在《复联3》的响指下化灰了，正如罗素兄弟在接受采访时说的那样。</strong></p>
+      </div>
+    </div>
+    <hr  class="featurette-divider">
+    <div style="background-color: rgba(255, 255, 255, 0.795);text-align: center;width: 800px;" class="row featurette">
+
+      <div style="padding: 40px;width:800px;position: relative;left:50%;margin-left:-400px;" class="col-md-7">
+        # 夏目漱石《我是猫》中的“牡蛎式的生活”是什么意思？
+```
+牡蛎：       牡蛎（oyster）别名又叫蚝，是所有食物中含锌最丰富的。       动物牡蛎及其近缘动物的全体，是海产贝壳。在亚热带、热带沿海都适宜蚝的养殖，我国分布很广，北起鸭绿江，南至海南岛，沿海皆可产蚝。蚝乃软体有壳，依附寄生的动物，咸淡水交界所产尤为肥美。       物种分类有长牡蛎，大连湾牡蛎，近江牡蛎等。其中著名代表是个子小小，像猫爪子一样的Kumamoto，中文叫“熊本蚝”。原来产于日本熊本县，但是后来被捕得快绝种，1920年代传到美国，便在美国西海岸开始繁殖。                                                                                 ——以上出自 百度百科
+
+```
+
+*1893*  年，大学毕业的夏目漱石在校长的推荐下顺利进入东京高等师范任教。两年后辞职到四国岛松山市中学任教，次年转入九州岛熊本市第五高等学校任英语教师。此后便一直担任教职到33岁，在 *熊本市* 定居了4年又3个月。在这4年里，夏目漱石搬了6次家。熊本对他来说是一个有纪念意义的地方。
+
+
+
+所以，“牡蛎”这个词在书中频繁出现也就不足为奇了。
+夏目漱石出生前家境已逐渐没落，双亲并不希望这位幺儿的降生，所以出生后一度被寄养在别人家，两岁时便被过继为严原家的养子。也许是“牡蛎”这种依附寄生的动物，使得夏目漱石回忆起童年寄养在别人家的种种，才有了书中“牡蛎式的生活”。      只读过竺家荣的译本，在网上看到过与此有关的一篇博客：
+
+```
+检证：竺家荣译《我是猫》之得失 ：竺译：他像个乖戾的牡蛎似的窝在书房里，从不对外界开口讲话。原文：彼は性（しょう）の悪い牡蠣（かき）のごとく書斎に吸いついて、かつて外界に向かって口を開いた事がない。说明：这里的“口を開いた”不是“开口讲话”，是顺着“牡蠣”比喻来的。“牡蛎”就是靠嘴巴吸附的，所以“外界に向かって口を開いた”是“不接受外界信息（老吸附在书房）”的意思。华南虎译：他如同一只执拗的牡蛎，死死地叮在书房里，从不想了解一下外界的情况。
+```
+有趣的是，村上春树在出席的一次活动中，曾将创作比喻为独自享用喜爱的食物烤牡蛎。幽默地表示:“`创作的确是孤独的过程，但并非是受人之托所写，不能带着抱怨，这就像'一个人吃牡蛎`”。题外话:  oyster这个词是有出处的。
+> “The world is my oyster”   —— 莎士比亚 The Merry Wives of Windsor（《温莎的风流娘们儿》）
+
+此处的`oyster`可以理解为“梦想得以实现的世界”。         这个名言是说 世界有很多的机会让我们可以如愿利用，牡蛎是获得珍珠的海生物，把世界比作牡蛎，是说从中我们可以得到非常有价值的东西。不知漱石先生是不是也有此意?
+      </div>
+    </div>
+
+    <!-- /END THE FEATURETTES -->
+
+
+    <!-- FOOTER -->
+
+    <hr class="style">
+      <div style="text-align: center;word-spacing: 50px;font-size:30px;color: lightcyan"> 
+        <div class="h_footer" style="position:relative">
+            <div class="footer_info"style="position:relative">
+              <div class="footer_infowrap">
+
+                <div class="h_wx fl">
+                  <ul class="h_wxwrap">
+                    <li class="h_wb">
+                      <img src="../static/imgs/music/icon.png" width="65" height="65" alt="微博" title="微博">
+                      <img src="../static/imgs/music/icon.png" width="65" height="65" alt="微博" title="微博">
+                      <img src="../static/imgs/music/icon.png" width="65" height="65" alt="微博" title="微博">
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="f_wz">
+              <a href="#">关于我们</a>
+              <a href="#">加入我们</a>
+              <a href="#">法律条款</a>
+              <a href="#">隐私政策</a>
+              <p>Carrot</p>
+            </div>
+          </div>
+        
+        
+        </div>
+
+   
+  </div><!-- /.container -->
+
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="../static/js/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+  <script src="../static/js/bootstrap.min.js"></script>
+  <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+  <script src="../static/js/holder.min.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+
+
+  <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" preserveAspectRatio="none"
+    style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;">
+    <defs>
+      <style type="text/css"></style>
+    </defs><text x="0" y="25"
+      style="font-weight:bold;font-size:25pt;font-family:Arial, Helvetica, Open Sans, sans-serif">500x500</text>
+  </svg>
+</body>
+
+</html>
+
+
+
+
+<style>
+.a{
+  text-de
+}
+</style>

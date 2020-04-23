@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)https://v3.bootcss.com/examples/carousel/ -->
+<html lang="en">
+
+<head>
+  <meta charset=" UTF-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="https://v3.bootcss.com/favicon.ico">
+
+  <title>胡萝卜</title>
+
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/ie10-viewport-bug-workaround.css' %}">
+
+  <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+  
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+  <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+  <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div id='background'></div>
+      <hr class="featurette-divider">
+      <div class="row featurette">
+          {% for item in lst %}
+          <div class='picwidth' class="col-md-7 col-md-push-7">
+            <h2 style="padding:50px;background-color:rgba(39, 38, 38,0.1);"  class="featurette-heading"><a style="background-color:transparent;color: #ffffff" href="{{item.2}}">{{item.0}}</a></h2>
+            <p style="padding:50px;;background-color:rgba(70, 68, 68, 0.7)" class="lead" style="color: azure">
+              {% if item.1 %}
+              <img style="max-width: 60% ; max-height: 60%" src="{% static item.1 %}" alt="">
+              {% endif %}
+            </p>
+          </div> 
+        {% empty %}
+        <div class="featurette-heading">
+          没有搜索到符合条件的文章
+        </div>
+      </div>
+      {% endfor %}
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="https://v3.bootcss.com/examples/carousel/#">Back to top</a></p>
+        <p>页脚 <a href="https://v3.bootcss.com/examples/carousel/#">页脚内容y</a> · <a
+            href="https://v3.bootcss.com/examples/carousel/#">页脚内容</a></p>
+
+      </footer>
+    </div>
+    <!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../static/js/jquery.min.js"></script>
+    <script>
+      window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+    </script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../static/js/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" preserveAspectRatio="none"
+      style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;">
+      <defs>
+        <style type="text/css"></style>
+      </defs><text x="0" y="25"
+        style="font-weight:bold;font-size:25pt;font-family:Arial, Helvetica, Open Sans, sans-serif">500x500</text>
+    </svg>
+</body>
+
+</html>

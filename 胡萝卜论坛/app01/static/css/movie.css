@@ -1,0 +1,47 @@
+
+
+html,body {
+  background-color: whitesmoke;
+}
+
+.container {
+  background: whitesmoke;
+  text-align: center;
+  width: 100%
+}
+
+.container img {
+  width: 20%;
+  height: 100%;
+}
+
+#carousel {
+  width: 100%;
+  /* border:1px solid #222; */
+  height: 500px;
+  clear: both;
+  overflow: hidden;
+  background: whitesmoke;
+}
+
+#carousel img {
+  visibility: hidden;
+  /* hide images until carousel can handle them */
+  cursor: pointer;
+  /* otherwise it's not as obvious items can be clicked */
+  width: 17%;
+  height: auto;
+}
+
+#callback-output {
+  width: 100%;
+  min-height: 25%;
+  background: whitesmoke;
+  height: auto;
+  overflow-y: scroll;
+}
+
+hr.style1 {
+  border: 0;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
